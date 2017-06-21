@@ -1,7 +1,6 @@
 <template>
   <div>
-  123
-  <toast></toast>
+    <alert></alert>
   </div>
 </template>
 
@@ -12,7 +11,9 @@
 </style>
 
 <script>
-import toast from './components/toast/toast.vue'
+
+
+import alert from './components/alert/alert.vue'
 
   export default {
     name: 'app',
@@ -21,7 +22,7 @@ import toast from './components/toast/toast.vue'
       }
     },
     components: {
-      toast,
+      alert,
     },
     mounted() {
     },

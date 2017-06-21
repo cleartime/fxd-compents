@@ -46,3 +46,8 @@
     border-collapse: collapse;
     border-spacing: 0;
   }
+  .alert{
+    background: red;
+    height: 10px;
+    width: 10px
+  }

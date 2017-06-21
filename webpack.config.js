@@ -5,6 +5,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); //css样式从js文件中分离出来,需要通过命令行安装 extract-text-webpack-plugin依赖包
 const htmlWebpackPlugin = require('html-webpack-plugin'); //html插件
 
+var opn = require('opn') //node打开浏览器的一个插件
+
 
 module.exports = {
     entry: './src/main.js',
@@ -16,6 +18,7 @@ module.exports = {
         /* 文件名 */
         filename: 'build.js'
     },
+
     module: {
         rules: [{
             test: /\.vue$/,
@@ -36,6 +39,11 @@ module.exports = {
             exclude: /node_modules/
         }]
     },
+    resolve: {
+        alias: {
+            reset: path.resolve(__dirname, 'src/lib/reset.css')
+        }
+    }
     // devServer: { // webpack-dev-server 热加载
     //     historyApiFallback: true,
     //     noInfo: true
@@ -49,3 +57,24 @@ module.exports = {
     //     })
     // ]
 }
+
+if (process.env.NODE_ENV === 'production') {
+    module.exports.plugins = [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"production"'
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.optimize.OccurenceOrderPlugin()
+    ]
+} else {
+    module.exports.devtool = '#source-map'
+}
+
+
+opn('http://localhost:8080')

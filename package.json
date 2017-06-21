@@ -1,8 +1,8 @@
 {
   "name": "fxd-components-example",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "this is fxd-components-example",
-  "main": "webpack.config.js",
+  "main": "./src/index.js",
   "dependencies": {
     "touchjs": "^0.2.14",
     "vue": "^2.3.4",
@@ -24,11 +24,21 @@
     "webpack-dev-server": "^2.5.0"
   },
   "scripts": {
+    "dev": "webpack-dev-server --inline --hot --quiet",
+    "build": "export NODE_ENV=production && webpack --progress --hide-modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "vue"
   ],
   "author": "gxx",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mennghao/vue-mui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mennghao/vue-mui/issues"
+  },
+  "homepage": "https://github.com/mennghao/vue-mui"
 }

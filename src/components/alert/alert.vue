@@ -1,11 +1,11 @@
 <template>
-  <div>
-    this is chajian
+  <div class="alert">
   </div>
 </template>
 
-<style>
-  
+<style lang="scss" scoped>
+@import '../../lib/reset.css';
+
 </style>
 
 <script>
@@ -16,6 +16,9 @@
     data() {
       return {
       };
+    },
+    mounted() {
+       alert(1)
     },
   };
 </script>
