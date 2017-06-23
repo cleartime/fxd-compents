@@ -1,17 +1,14 @@
 <template>
   <div>
-    <alert></alert>
+    <alert :msg="msg"></alert>
   </div>
 </template>
 
 <style lang="scss">
-  div{
-  color:green
-  }
+@import './lib/reset.css';
 </style>
 
 <script>
-
 
 import alert from './components/alert/alert.vue'
 
@@ -19,6 +16,7 @@ import alert from './components/alert/alert.vue'
     name: 'app',
     data() {
       return {
+        msg:'确定要退出么'
       }
     },
     components: {

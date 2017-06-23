@@ -1,1 +1,1 @@
-## 运行直接使用 `webpack-dev-server`
+## 运行直接使用 `npm run dev`
