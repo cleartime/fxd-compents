@@ -1,3 +1,3 @@
 module.exports = {
-	alert : require('./components/alert/alert.vue'),
+	alert : require('./components/common/alert/alert.vue'),
 }

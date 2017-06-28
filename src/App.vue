@@ -14,10 +14,10 @@
 </style>
 
 <script>
-import actionsheet from './components/actionsheet/actionsheet.vue'
-import fmask from './components/mask/mask.vue'
-import alert from './components/alert/alert.vue'
-import toask from './components/toask/toask.vue'
+import actionsheet from './components/common/actionsheet/actionsheet.vue'
+import fmask from './components/common/mask/mask.vue'
+import alert from './components/common/alert/alert.vue'
+import toask from './components/common/toask/toask.vue'
 
   export default {
     name: 'app',
