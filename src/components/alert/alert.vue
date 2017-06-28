@@ -24,7 +24,7 @@
    h2{
      padding: .4rem .3rem;
      font-weight: normal;
-     font-size: .28rem;
+     font-size: .35rem;
      border-bottom: 1px solid #EBEBEB;
    }
    p{
