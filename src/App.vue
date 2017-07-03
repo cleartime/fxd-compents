@@ -4,8 +4,9 @@
     <!--<toask :msg='msg'></toask>-->
     <!--<fmask/>-->
     <!--<actionsheet></actionsheet>-->
-    <textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=val}"></textInput>
-    <textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=val}"></textInput>
+    <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=val}"></textInput>-->
+    <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=val}"></textInput>-->
+      <radioTip></radioTip>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import alert from './components/common/alert/alert.vue'
 import toask from './components/common/toask/toask.vue'
 import swiper from './components/ui/swiper/swiper.vue'
 import textInput from './components/ui/textInput/textInput.vue'
+import radioTip from './components/ui/radioTip/radioTip.vue'
 
   export default {
     name: 'app',
@@ -42,7 +44,8 @@ import textInput from './components/ui/textInput/textInput.vue'
       fmask,
       actionsheet,
         swiper,
-        textInput
+        textInput,
+        radioTip
     },
     mounted() {
 

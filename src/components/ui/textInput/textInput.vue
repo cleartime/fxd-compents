@@ -1,5 +1,5 @@
 <template>
-  <div class="textInput">
+  <div class="textInput dis">
     <img
             :src="iconUrl"
             alt="" class="icon"
@@ -9,8 +9,7 @@
             id="inputText"
             type="text"
             :placeholder="placeholder"
-            v-model="myModel"
-    >
+            v-model="myModel">
     <div class="btn"
          :class="[codeShow?'dis':'']"
          @click="send_code"
@@ -19,6 +18,9 @@
 </template>
 <style lang="scss" scoped>
   .textInput{
+      &.dis{
+        border: 1px solid red
+       }
     width: 90%;
     overflow: hidden;
     margin:0 auto;
