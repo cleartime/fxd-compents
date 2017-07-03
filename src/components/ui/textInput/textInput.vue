@@ -1,8 +1,20 @@
 <template>
   <div class="textInput">
-    <img :src="iconUrl" alt="" class="icon" :class="[iconRight?'right':'left']" v-if="showIcon">
-    <input type="text" placeholder="12312">
-    <div class="btn" :class="[code_show?'dis':'']" @click="send_code" v-if="showCode">{{timeText}}</div>
+    <img
+            :src="iconUrl"
+            alt="" class="icon"
+            :class="[iconRight?'right':'left']"
+            v-if="showIcon">
+    <input
+            :placeholder="placeholder"
+            :model="model"
+            :type="inputType"
+    >
+    <div class="btn"
+         :class="[code_show?'dis':'']"
+         @click="send_code"
+         v-if="showCode"
+    >{{timeText}}</div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -67,7 +79,7 @@
                 code_show:false//发送验证码按钮能不能点击
             }
         },
-        props:['showIcon','showCode','iconRight','timeInterval','iconUrl'],
+        props:['showIcon','showCode','iconRight','timeInterval','iconUrl','inputType','placeholder','model'],
         mounted() {
             if(!!this.timeInterval){//倒计时秒数带入
                 this.timeout = this.timeInterval;

@@ -4,7 +4,7 @@
     <!--<toask :msg='msg'></toask>-->
     <!--<fmask/>-->
     <!--<actionsheet></actionsheet>-->
-    <textInput :showIcon="true" :timeInterval="59" :showCode="true" :iconUrl="icon"></textInput>
+    <textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :inputType="type" :model="message"></textInput>
   </div>
 </template>
 
@@ -26,8 +26,11 @@ import textInput from './components/ui/textInput/textInput.vue'
     name: 'app',
     data() {
       return {
-        msg:'确定要退出么',
-          icon:require('./public/img/test.png')
+          msg:'确定要退出么',
+          icon:require('./public/img/test.png'),
+          placeholder:'请输入电话号码',
+          type:'number',
+          message:'1232sdfs'
       }
     },
     components: {
