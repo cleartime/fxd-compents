@@ -33,6 +33,16 @@ module.exports = {
                 use: ["css-loader", "sass-loader"]
             })
         }, {
+            test: /\.(png|jpg|gif)$/,
+            use: [
+                {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192
+                    }
+                }
+            ]
+        },{
             test: /\.js$/,
             loader: 'babel-loader',
             /* 排除模块安装目录的文件 */
