@@ -4,12 +4,12 @@
     <!--<toask :msg='msg'></toask>-->
     <!--<fmask/>-->
     <!--<actionsheet></actionsheet>-->
-    <textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="message"></textInput>
+    <textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=val}"></textInput>
+    <textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=val}"></textInput>
   </div>
 </template>
 
 <style lang="scss">
-
 @import './lib/reset.css';
 @import 'lib/config';
 </style>
@@ -30,7 +30,10 @@ import textInput from './components/ui/textInput/textInput.vue'
           icon:require('./public/img/test.png'),
           placeholder:'请输入电话号码',
           type:'number',
-          message:'322'
+          item:{
+              message:'322',
+              message2:'222'
+          }
       }
     },
     components: {

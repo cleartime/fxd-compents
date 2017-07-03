@@ -9,10 +9,10 @@
             id="inputText"
             type="text"
             :placeholder="placeholder"
-            v-model.trim="model"
+            v-model="myModel"
     >
     <div class="btn"
-         :class="[code_show?'dis':'']"
+         :class="[codeShow?'dis':'']"
          @click="send_code"
          v-if="showCode">{{timeText}}</div>
   </div>
@@ -76,7 +76,8 @@
                 time:null,//清除定时器用的
                 timeout:_timeout,//这个不用解释了吧，多少秒
                 timeText:_timeText,//提示的文字
-                code_show:false//发送验证码按钮能不能点击
+                codeShow:false,//发送验证码按钮能不能点击
+                myModel:this.model//组件内不能修改props的值，同时修改的值也不会同步到组件外层，即调用组件方不知道组件内部当前的状态是什么
             }
         },
         props:['showIcon','showCode','iconRight','timeInterval','iconUrl','placeholder','type','model'],
@@ -100,18 +101,22 @@
                         return
                     }
                     clearInterval(this.time);
-                    this.code_show = !this.code_show;
+                    this.codeShow = !this.codeShow;
                     this.timeText = _timeText;
                     this.timeout = _timeout;
                 },1000)
             },
             send_code(){//发送验证码
-                this.code_show = !this.code_show;
+                this.codeShow = !this.codeShow;
                 this.send_code_countdown();
                 this.$emit('send_code_cb');
-
-            }
-        }
+            },
+        },
+        watch:{
+            myModel(val) {
+                this.$emit('text_input_cb',val);
+            },
+        },
     }
 </script>
 
