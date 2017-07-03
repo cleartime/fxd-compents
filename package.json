@@ -1,6 +1,6 @@
 {
   "name": "fxd-components-example",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "this is fxd-components-example",
   "main": "./src/index.js",
   "dependencies": {
