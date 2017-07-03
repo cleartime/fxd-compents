@@ -4,7 +4,7 @@
     <!--<toask :msg='msg'></toask>-->
     <!--<fmask/>-->
     <!--<actionsheet></actionsheet>-->
-    <textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :inputType="type" :model="message"></textInput>
+    <textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="message"></textInput>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ import textInput from './components/ui/textInput/textInput.vue'
           icon:require('./public/img/test.png'),
           placeholder:'请输入电话号码',
           type:'number',
-          message:'1232sdfs'
+          message:'322'
       }
     },
     components: {
@@ -42,6 +42,7 @@ import textInput from './components/ui/textInput/textInput.vue'
         textInput
     },
     mounted() {
+
     },
     methods: {
     }

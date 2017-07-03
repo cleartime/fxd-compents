@@ -6,15 +6,15 @@
             :class="[iconRight?'right':'left']"
             v-if="showIcon">
     <input
+            id="inputText"
+            type="text"
             :placeholder="placeholder"
-            :model="model"
-            :type="inputType"
+            v-model.trim="model"
     >
     <div class="btn"
          :class="[code_show?'dis':'']"
          @click="send_code"
-         v-if="showCode"
-    >{{timeText}}</div>
+         v-if="showCode">{{timeText}}</div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -79,11 +79,14 @@
                 code_show:false//发送验证码按钮能不能点击
             }
         },
-        props:['showIcon','showCode','iconRight','timeInterval','iconUrl','inputType','placeholder','model'],
+        props:['showIcon','showCode','iconRight','timeInterval','iconUrl','placeholder','type','model'],
         mounted() {
             if(!!this.timeInterval){//倒计时秒数带入
                 this.timeout = this.timeInterval;
                 _timeout = this.timeInterval;
+            }
+            if(!!this.type){
+                document.getElementById('inputText').setAttribute('type',this.type)
             }
         },
         methods:{
@@ -105,6 +108,8 @@
             send_code(){//发送验证码
                 this.code_show = !this.code_show;
                 this.send_code_countdown();
+                this.$emit('send_code_cb');
+
             }
         }
     }
