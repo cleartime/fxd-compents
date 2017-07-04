@@ -6,7 +6,12 @@
     <!--<actionsheet></actionsheet>-->
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=val}"></textInput>-->
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=val}"></textInput>-->
-      <radioTip></radioTip>
+      <radioTip
+          :agreeText="'同意发薪贷'"
+          :tipList="['注册协议','隐私保密协议']"
+          @tick_cb="tick_cb"
+          @tip_cb="tip_cb"
+      ></radioTip>
   </div>
 </template>
 
@@ -39,10 +44,10 @@ import radioTip from './components/ui/radioTip/radioTip.vue'
       }
     },
     components: {
-      alert,
-      toask,
-      fmask,
-      actionsheet,
+        alert,
+        toask,
+        fmask,
+        actionsheet,
         swiper,
         textInput,
         radioTip
@@ -51,6 +56,12 @@ import radioTip from './components/ui/radioTip/radioTip.vue'
 
     },
     methods: {
+        tick_cb(i){
+            console.log(i)
+        },
+        tip_cb(t,i){
+            console.log(t,i)
+        }
     }
   }
 </script>
