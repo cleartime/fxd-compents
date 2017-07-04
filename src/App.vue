@@ -6,12 +6,7 @@
     <!--<actionsheet></actionsheet>-->
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=val}"></textInput>-->
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=val}"></textInput>-->
-      <radioTip
-          :agreeText="'同意发薪贷'"
-          :tipList="['注册协议','隐私保密协议']"
-          @tick_cb="tick_cb"
-          @tip_cb="tip_cb"
-      ></radioTip>
+    <loading></loading>
   </div>
 </template>
 
@@ -25,10 +20,11 @@ import actionsheet from './components/common/actionsheet/actionsheet.vue'
 import fmask from './components/common/mask/mask.vue'
 import alert from './components/common/alert/alert.vue'
 import toask from './components/common/toask/toask.vue'
+import loading from './components/common/loading/loading.vue'
+
 import swiper from './components/ui/swiper/swiper.vue'
 import textInput from './components/ui/textInput/textInput.vue'
 import radioTip from './components/ui/radioTip/radioTip.vue'
-
   export default {
     name: 'app',
     data() {
@@ -40,7 +36,7 @@ import radioTip from './components/ui/radioTip/radioTip.vue'
           item:{
               message:'322',
               message2:'222'
-          }
+          },
       }
     },
     components: {
@@ -50,18 +46,12 @@ import radioTip from './components/ui/radioTip/radioTip.vue'
         actionsheet,
         swiper,
         textInput,
-        radioTip
+        radioTip,
+        loading
     },
     mounted() {
-
     },
     methods: {
-        tick_cb(i){
-            console.log(i)
-        },
-        tip_cb(t,i){
-            console.log(t,i)
-        }
     }
   }
 </script>

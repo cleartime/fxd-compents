@@ -32,6 +32,9 @@
         height:.28rem;
         margin-right: .1rem;
     }
+    .agree{
+        color: #9fa0a0;
+    }
     .agree,.tip{
         font-size: .24rem
     }
