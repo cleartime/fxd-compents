@@ -1,5 +1,6 @@
 <template>
-  <div class="loading" >
+
+  <div class="loading" onclick="(event.stopPropagation())">
       <div class="loading-outline" >
           <img :src="imgUrl" alt="" >
       </div>
@@ -17,7 +18,6 @@
       z-index: 100;
       background: rgba(000,000,000,.3);
       box-shadow: 0 0 10rem .1rem rgba(000,000,000,.7) inset;
-      pointer-events: none;
       .loading-outline{
           display: flex;
           align-items: center;
