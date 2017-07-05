@@ -52,9 +52,6 @@ import radioTip from './components/ui/radioTip/radioTip.vue'
     mounted() {
     },
     methods: {
-        aaa(){
-            console.log(333)
-        }
     }
   }
 </script>

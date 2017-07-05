@@ -1,6 +1,5 @@
 <template>
-
-  <div class="loading" onclick="(event.stopPropagation())">
+  <div class="loading" @click="preventDefault">
       <div class="loading-outline" >
           <img :src="imgUrl" alt="" >
       </div>
@@ -19,6 +18,7 @@
       background: rgba(000,000,000,.3);
       box-shadow: 0 0 10rem .1rem rgba(000,000,000,.7) inset;
       .loading-outline{
+          pointer-events: none;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -77,6 +77,9 @@
             this.cancel();
         },
         methods:{
+            preventDefault(e){//阻止冒泡
+                e.preventDefault()
+            },
             cancel(){//取消几个定时器和AnimationFrame
                 clearInterval(time1);
                 clearTimeout(time2);
