@@ -6,7 +6,9 @@
     <!--<actionsheet></actionsheet>-->
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=val}"></textInput>-->
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=val}"></textInput>-->
-    <loading></loading>
+    <!--<loading></loading>-->
+    <mobileVerify></mobileVerify>
+    <div @click="submit">提交</div>
   </div>
 </template>
 
@@ -25,6 +27,9 @@ import loading from './components/common/loading/loading.vue'
 import swiper from './components/ui/swiper/swiper.vue'
 import textInput from './components/ui/textInput/textInput.vue'
 import radioTip from './components/ui/radioTip/radioTip.vue'
+
+import {bus} from './until/evenbus'
+import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
   export default {
     name: 'app',
     data() {
@@ -47,11 +52,17 @@ import radioTip from './components/ui/radioTip/radioTip.vue'
         swiper,
         textInput,
         radioTip,
-        loading
+        loading,
+        mobileVerify
     },
     mounted() {
     },
     methods: {
+        submit(){
+            bus.$emit('mobile_verify_submit_cb',function(data){
+                console.log(data)
+            });
+        }
     }
   }
 </script>

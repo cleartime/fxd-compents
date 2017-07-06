@@ -1,19 +1,16 @@
 <template>
-  <div class="textInput dis">
+  <div class="textInput" :class="[dis?'dis':'']">
     <img
             :src="iconUrl"
-            alt="" class="icon"
+            alt=""
+            class="icon"
             :class="[iconRight?'right':'left']"
             v-if="showIcon">
     <input
             id="inputText"
-            type="text"
             :placeholder="placeholder"
             v-model="myModel">
-    <div class="btn"
-         :class="[codeShow?'dis':'']"
-         @click="send_code"
-         v-if="showCode">{{timeText}}</div>
+    <!--<toask v-if="toaskSwitch" :msg="toaskMsg"></toask>-->
   </div>
 </template>
 <style lang="scss" scoped>
@@ -53,71 +50,55 @@
       padding:0 .15rem;
       color: #00aaee;
     }
-    .btn{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      width: 4rem;
-      background: #00aaee;
-      color: #fff;
-      font-size: .32rem;
-      &.dis{
-        pointer-events: none;
-        background: #ccc;
-      }
-    }
   }
 </style>
 <script type="text/ecmascript-6">
-  let _timeout = 59;//倒计时秒数，默认59
-  let _timeText = '发送验证码';
+  import regArr from "../../../config/regular"
+  import {toaskMixin} from '../../../until/mixin'
     export default{
         data(){
             return {
+                dis:false,//错误效果
                 time:null,//清除定时器用的
-                timeout:_timeout,//这个不用解释了吧，多少秒
-                timeText:_timeText,//提示的文字
-                codeShow:false,//发送验证码按钮能不能点击
-                myModel:this.model//组件内不能修改props的值，同时修改的值也不会同步到组件外层，即调用组件方不知道组件内部当前的状态是什么
+                myModel:this.model,//组件内不能修改props的值，同时修改的值也不会同步到组件外层，即调用组件方不知道组件内部当前的状态是什么
             }
         },
-        props:['showIcon','showCode','iconRight','timeInterval','iconUrl','placeholder','type','model'],
+        props:['showIcon','iconRight','iconUrl','placeholder','type','model','maxlength','readOnly'],
+        mixins:[toaskMixin],
+        render: function (createElement) {
+            console.log(createElement)
+            return createElement('p', 'No items found.')
+        },
         mounted() {
-            if(!!this.timeInterval){//倒计时秒数带入
-                this.timeout = this.timeInterval;
-                _timeout = this.timeInterval;
-            }
-            if(!!this.type){
-                document.getElementById('inputText').setAttribute('type',this.type)
-            }
+            !!this.readOnly&&document.getElementById('inputText').setAttribute('readonly',!!this.readOnly)//设置类型默认为text
+            !!this.type&&document.getElementById('inputText').setAttribute('type',this.type||"text")//设置类型默认为text
+            this.max_length();
         },
         methods:{
-            send_code_countdown(){//倒计时
-                clearInterval(this.time);
-                this.time = setInterval(()=>{
-                    if(this.timeout>0){
-                        this.timeText = `发送(${this.timeout})`;
-                        this.timeout--;
-                        this.send_code_countdown();
-                        return
+            max_length(){//设置最大长度默认不设置
+                if(!!this.maxlength&&this.myModel.length>this.maxlength){
+                    this.myModel = this.myModel.substr(0,this.maxlength)
+                }
+            },
+            verify_reg(){//验证正则表达式
+                if(!!this.type){
+                    let regObj = regArr.filter(t=>{
+                        return t.type===this.type
+                    })[0]
+                    if(!(regObj.reg.test(this.myModel))){
+                        this.dis = !this.dis;
+                        this.toask_switch();
+                        this.toaskMsg = `请输入${regObj.name}`;
                     }
-                    clearInterval(this.time);
-                    this.codeShow = !this.codeShow;
-                    this.timeText = _timeText;
-                    this.timeout = _timeout;
-                },1000)
-            },
-            send_code(){//发送验证码
-                this.codeShow = !this.codeShow;
-                this.send_code_countdown();
-                this.$emit('send_code_cb');
-            },
+                }
+            }
         },
         watch:{
             myModel(val) {
+                this.verify_reg();
+                this.max_length();
                 this.$emit('text_input_cb',val);
-            },
+            }
         },
     }
 </script>
