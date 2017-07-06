@@ -7,19 +7,45 @@ export const toaskMixin = {
         return{
             toaskSwitch:false,
             toaskSwitchTime:null,
+            time1:null,
+            time2:null,
+            _timeInterval:null,
+            timeIntervalnum:2,
         }
     },
-
     components: {
         toask,
     },
     methods:{
         toask_switch(){
-            clearTimeout(this.toaskSwitchTime);
-            this.toaskSwitch = !this.toaskSwitch;
-            this.toaskSwitchTime = setTimeout(()=>{
+            if(!this.time1&&!this.time2){
+                this.time1 = +new Date();
+            }else if(!!this.time1&&!this.time2){
+                this.time2 = +new Date();
+            }else{
+                if(this.time2>this.time1){
+                    this.time1 = +new Date();
+                }else{
+                    this.time2 = +new Date();
+                }
+            }
+            if(!!this.time1&&!!this.time2){
+                if(this.time1>this.time2){
+                    this._timeInterval = this.time1-this.time2
+                }else{
+                    this._timeInterval = this.time2-this.time1
+                }
+            }
+            if(!!this._timeInterval&&((this._timeInterval/1000)<this.timeIntervalnum)){
+                return false
+            }else{
+                clearTimeout(this.toaskSwitchTime);
                 this.toaskSwitch = !this.toaskSwitch;
-            },1000)
+                this.toaskSwitchTime = setTimeout(()=>{
+                    this.toaskSwitch = !this.toaskSwitch;
+                },this.timeIntervalnum*1000)
+            }
+
         }
     }
 

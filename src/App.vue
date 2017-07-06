@@ -7,7 +7,7 @@
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=val}"></textInput>-->
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=val}"></textInput>-->
     <!--<loading></loading>-->
-    <mobileVerify></mobileVerify>
+    <mobileVerify :imgCodeSwitch="true"></mobileVerify>
     <div @click="submit">提交</div>
   </div>
 </template>
@@ -59,7 +59,7 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
     },
     methods: {
         submit(){
-            bus.$emit('mobile_verify_submit_cb',function(data){
+            bus.$emit('mobile_verify_submit_cb',(data)=>{
                 console.log(data)
             });
         }

@@ -4,13 +4,13 @@
             :showIcon="true"
             :iconUrl="item.mobile.icon"
             :placeholder="'请输入手机号码'"
-            :maxlength="'5'"
             :type="'mobile'"
             :model="item.mobile.val"
             @text_input_cb="val=>{item.mobile.val=val}"></textInput>
     <div class="mobileVerify-imgCode"
          v-if='myImgCodeSwitch'>
       <textInput :showIcon="true"
+                 :type="'imgCode'"
                  :iconUrl="item.imgCode.icon"
                  :placeholder="'请输入图形验证码'"
                  :model="item.imgCode.val"
@@ -23,6 +23,7 @@
     <div class="mobileVerify-code">
       <textInput
               :showIcon="true"
+              :type="'code'"
               :iconUrl="item.verify.icon"
               :placeholder="'请输入验证码'"
               :model="item.verify.val"
@@ -32,12 +33,13 @@
            @click="mobile_verify_sendcode_cb"
       >{{timeText}}</div>
     </div>
-    <!--<toask v-if="toaskSwitch" :msg="toaskMsg"></toask>-->
+    <toask v-if="toaskSwitch" :msg="toaskMsg"></toask>
   </div>
 </template>
 <style lang="scss" scoped>
   .mobileVerify{
     .mobileVerify-imgCode, .mobileVerify-code{
+      position: relative;
       width: 90%;
       margin:0 auto;
       border: 1px solid #00aaee;
@@ -45,10 +47,29 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
       height: 1rem;
       .textInput{
         border:none;
+        &.dis:after{
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          box-shadow: -1px 1px 1px red;
+          border-radius: .15rem;
+          top:0;
+          left:0
+        }
+        &.dis:before{
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          box-shadow: 1px -1px 1px red;
+          border-radius: .15rem;
+          top:0;
+          left:0
+        }
       }
       .mobileVerify-btn,.mobileVerify-imgCode-img{
         width: 4rem;
@@ -69,6 +90,9 @@
         }
       }
     }
+    &>div{
+      margin-top: .3rem!important;
+    }
   }
 </style>
 <script type="text/ecmascript-6">
@@ -84,7 +108,7 @@
                 item:{
                     mobile:{
                         icon:require('../../../public/img/test.png'),
-                        val:'12312312312',
+                        val:'',
                     },
                     imgCode:{
                         icon:require('../../../public/img/test.png'),
@@ -143,19 +167,13 @@
                 this.$emit('mobile_verify_img_cb');
             },
             mobile_verify_sendcode_cb(){//发送验证码
-                if(!this.item.mobile.val){
-                    this.toask_switch();
-                    this.toaskMsg = '请输入手机号';
-                    return
-                }
-                if(!!this.imgCodeSwitch&&!this.item.imgCode.val){
-                    this.toask_switch();
-                    this.toaskMsg = '请输入图形验证码';
-                    return
-                }
-                this.codeShow = !this.codeShow;
-                this.send_code_countdown();
-                this.$emit('mobile_verify_sendcode_cb');
+                bus.$emit('text_input_verify_cb',(bool)=>{
+                   if(bool){
+                       this.codeShow = !this.codeShow;
+                       this.send_code_countdown();
+                       this.$emit('mobile_verify_sendcode_cb');
+                   }
+                });
             },
         }
     }
