@@ -42,6 +42,7 @@ export const toaskMixin = {
                 clearTimeout(this.toaskSwitchTime);
                 this.toaskSwitch = !this.toaskSwitch;
                 this.toaskSwitchTime = setTimeout(()=>{
+                    clearTimeout(this.toaskSwitchTime);
                     this.toaskSwitch = !this.toaskSwitch;
                 },this.timeIntervalnum*1000)
             }

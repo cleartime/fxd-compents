@@ -105,7 +105,7 @@
                         return false
                     }
                     bus.$on('text_input_verify_cb',(ca)=>{
-                        ca(true)
+                        ca(this.regObj)
                     });
                 }
             }

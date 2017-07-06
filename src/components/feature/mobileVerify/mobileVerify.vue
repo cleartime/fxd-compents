@@ -78,6 +78,8 @@
     }
     .mobileVerify-code{
       .mobileVerify-btn{
+        border-top-right-radius: .15rem;
+        border-bottom-right-radius: .15rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -105,6 +107,10 @@
         data(){
             return {
                 myImgCodeSwitch:this.imgCodeSwitch||false,//图形验证码开关
+                verify:{
+                    mobile:false,
+                    imgCode:false,
+                },
                 item:{
                     mobile:{
                         icon:require('../../../public/img/test.png'),
@@ -167,12 +173,13 @@
                 this.$emit('mobile_verify_img_cb');
             },
             mobile_verify_sendcode_cb(){//发送验证码
-                bus.$emit('text_input_verify_cb',(bool)=>{
-                   if(bool){
-                       this.codeShow = !this.codeShow;
-                       this.send_code_countdown();
-                       this.$emit('mobile_verify_sendcode_cb');
-                   }
+                bus.$emit('text_input_verify_cb',(data)=>{
+                    this.verify[data.type] = true;
+                    if(this.verify.mobile&&this.verify.imgCode){
+                        this.codeShow = !this.codeShow;
+                        this.send_code_countdown();
+                        this.$emit('mobile_verify_sendcode_cb');
+                    }
                 });
             },
         }
