@@ -106,10 +106,11 @@
     export default{
         data(){
             return {
-                myImgCodeSwitch:this.imgCodeSwitch||false,//图形验证码开关
-                verify:{
+                myImgCodeSwitch:this.imgCodeSwitch,//图形验证码开关
+                verify:{//判断手机号和图形验证码有没有验证完成
                     mobile:false,
                     imgCode:false,
+                    code:false,
                 },
                 item:{
                     mobile:{
@@ -141,12 +142,16 @@
         },
         mounted() {
             bus.$on('mobile_verify_submit_cb', (ca)=>{//监听mobile_verify_sub事件将数据添加到callback函数参数里面，然后触发的时候就可以从返回参数里面直接获取了
-                if(!this.imgCodeSwitch){//如果没打开图形验证码，就只返回手机号和验证码2个对象
-                    let {mobile,verify} = this.item
-                    ca({mobile,verify})
-                    return
+                if(this.verify.mobile&&this.verify.imgCode&&this.verify.code){
+                    if(!this.imgCodeSwitch){//如果没打开图形验证码，就只返回手机号和验证码2个对象
+                        let {mobile,verify} = this.item
+                        ca({mobile,verify})
+                        return
+                    }
+                    ca(this.item)
+                    return false
                 }
-                ca(this.item)
+                bus.$emit('verify_defalut_cb',this.$children);//触发默认验证事件
             });
             if(!!this.timeInterval){//倒计时秒数带入
                 this.timeout = this.timeInterval;
@@ -173,14 +178,17 @@
                 this.$emit('mobile_verify_img_cb');
             },
             mobile_verify_sendcode_cb(){//发送验证码
-                bus.$emit('text_input_verify_cb',(data)=>{
+                bus.$emit('text_input_verify_cb',(data)=>{//验证返回的callback
                     this.verify[data.type] = true;
-                    if(this.verify.mobile&&this.verify.imgCode){
+                    if((this.imgCodeSwitch&&this.verify.mobile&&this.verify.imgCode)||(!this.imgCodeSwitch&&this.verify.mobile)){//如果都都验证完了才执行发送验证码事件
                         this.codeShow = !this.codeShow;
                         this.send_code_countdown();
                         this.$emit('mobile_verify_sendcode_cb');
                     }
                 });
+                if(!this.verify.mobile){
+                    bus.$emit('verify_defalut_cb',this.$children);//触发默认验证事件
+                }
             },
         }
     }

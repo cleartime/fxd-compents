@@ -71,17 +71,52 @@
         props:['showIcon','iconRight','iconUrl','placeholder','type','model','maxlength','readOnly'],
         mixins:[toaskMixin],
         mounted() {
-            !!this.readOnly&&this.$refs.dom.setAttribute('readonly',!!this.readOnly)//设置类型默认为text
-            if(!!this.type){//获取规则json
-                this.regObj = regArr.filter(t=>{
-                    return t.type===this.type
-                })[0];
-                this.$refs.dom.setAttribute('type',this.regObj.textType)//设置类型默认为text
-                this.myMaxlength = this.regObj.maxlength//强制设置类型长度
-            }
-            this.max_length();
+            this.init();
         },
         methods:{
+            init(){
+                bus.$on('verify_defalut_cb',(childrenArr)=>{//默认验证
+//                    _this = _this[0]
+//                    if(_this._uid !== this._uid){//如果不是自身相同的组件则不需要触发
+//                        return false
+//                    }
+//                    childrenArr.forEach(t=>{
+//                        if(!!t.model){
+//                            return
+//                        }
+//                        t.dis = true;
+//                        t.toask_switch();
+//                        t.toaskMsg = `${t.regObj.name}不能为空`;
+//                        t.$refs.dom.focus();
+//                    })
+//                    let result = childrenArr.filter(t=>{
+//                        return t._uid === this._uid
+//                    })[0]
+                    for(let i=0,len=childrenArr.length;i<len;i++){
+                        let t = childrenArr[i];
+//                        if(t._uid === this._uid){//如果不是自身相同的组件则不需要触发
+//                            return false
+//                        }
+                        if(!t.model){
+                            t.dis = true;
+//                            t.toask_switch();
+//                            t.toaskMsg = `${t.regObj.name}不能为空`;
+                            t.$refs.dom.focus();
+                            break
+                        }
+                    }
+
+                });
+                !!this.readOnly&&this.$refs.dom.setAttribute('readonly',!!this.readOnly)//设置类型默认为text
+                if(!!this.type){//获取规则json
+                    this.regObj = regArr.filter(t=>{
+                        return t.type===this.type
+                    })[0];
+                    this.$refs.dom.setAttribute('type',this.regObj.textType)//设置类型默认为text
+                    this.myMaxlength = this.regObj.maxlength//强制设置类型长度
+                }
+                this.max_length();
+            },
             max_length(){//设置最大长度默认不设置
                 if(!!this.myMaxlength&&this.myModel.length>this.myMaxlength){
                     this.myModel = this.myModel.substr(0,this.myMaxlength)
@@ -104,7 +139,7 @@
                         this.$refs.dom.focus();
                         return false
                     }
-                    bus.$on('text_input_verify_cb',(ca)=>{
+                    bus.$on('text_input_verify_cb',(ca)=>{//返回验证的结果
                         ca(this.regObj)
                     });
                 }

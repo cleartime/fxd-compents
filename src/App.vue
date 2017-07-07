@@ -7,7 +7,7 @@
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=val}"></textInput>-->
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=val}"></textInput>-->
     <!--<loading></loading>-->
-    <mobileVerify :imgCodeSwitch="true" ></mobileVerify>
+    <mobileVerify ></mobileVerify>
     <div @click="submit">提交</div>
   </div>
 </template>
