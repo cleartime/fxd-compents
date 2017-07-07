@@ -18,7 +18,7 @@
       <img
               :src="item.imgCode.iconUrl"
               alt="" class="mobileVerify-imgCode-img"
-              @click="mobile_verify_img_cb">
+              @click="mobile_verify_img">
     </div>
     <div class="mobileVerify-code">
       <textInput
@@ -30,7 +30,7 @@
               @text_input_cb="val=>{item.verify.val=val}"></textInput>
       <div class="mobileVerify-btn"
            :class="[codeShow?'dis':'']"
-           @click="mobile_verify_sendcode_cb"
+           @click="mobile_verify_sendcode"
       >{{timeText}}</div>
     </div>
     <toask v-if="toaskSwitch" :msg="toaskMsg"></toask>
@@ -112,21 +112,22 @@
                     imgCode:false,
                     code:false,
                 },
-                item:{
-                    mobile:{
-                        icon:require('../../../public/img/test.png'),
-                        val:'',
-                    },
-                    imgCode:{
-                        icon:require('../../../public/img/test.png'),
-                        iconUrl:require('../../../public/img/test.png'),
-                        val:'',
-                    },
-                    verify:{
-                        icon:require('../../../public/img/test.png'),
-                        val:'',
-                    },
-                },
+                item:this.data,
+//                    {
+//                    mobile:{
+//                        icon:require('../../../public/img/test.png'),
+//                        val:'',
+//                    },
+//                    imgCode:{
+//                        icon:require('../../../public/img/test.png'),
+//                        iconUrl:require('../../../public/img/test.png'),
+//                        val:'',
+//                    },
+//                    verify:{
+//                        icon:require('../../../public/img/test.png'),
+//                        val:'',
+//                    },
+//                },
                 msg:'',
                 time:null,//清除定时器用的
                 timeout:_timeout,//这个不用解释了吧，多少秒
@@ -135,12 +136,15 @@
                 myModel:this.model,//组件内不能修改props的值，同时修改的值也不会同步到组件外层，即调用组件方不知道组件内部当前的状态是什么
             }
         },
-        props:['showIcon','iconRight','timeInterval','iconUrl','model','mobileModel','imgCodeSwitch'],
+        props:['data','showIcon','iconRight','timeInterval','iconUrl','model','mobileModel','imgCodeSwitch'],
         mixins:[toaskMixin],
         components: {
             textInput,
         },
         mounted() {
+            if(!!this.item.imgCode){
+               this.myImgCodeSwitch = !this.myImgCodeSwitch;
+            }
             bus.$on('mobile_verify_submit_cb', (ca)=>{//监听mobile_verify_sub事件将数据添加到callback函数参数里面，然后触发的时候就可以从返回参数里面直接获取了
                 if(this.verify.mobile&&this.verify.imgCode&&this.verify.code){
                     if(!this.imgCodeSwitch){//如果没打开图形验证码，就只返回手机号和验证码2个对象
@@ -174,10 +178,10 @@
                     this.timeout = _timeout;
                 },1000)
             },
-            mobile_verify_img_cb(){//图形验证码
+            mobile_verify_img(){//图形验证码
                 this.$emit('mobile_verify_img_cb');
             },
-            mobile_verify_sendcode_cb(){//发送验证码
+            mobile_verify_sendcode(){//发送验证码
                 bus.$emit('text_input_verify_cb',(data)=>{//验证返回的callback
                     this.verify[data.type] = true;
                     if((this.imgCodeSwitch&&this.verify.mobile&&this.verify.imgCode)||(!this.imgCodeSwitch&&this.verify.mobile)){//如果都都验证完了才执行发送验证码事件

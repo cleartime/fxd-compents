@@ -7,7 +7,7 @@
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=val}"></textInput>-->
     <!--<textInput :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=val}"></textInput>-->
     <!--<loading></loading>-->
-    <mobileVerify ></mobileVerify>
+    <mobileVerify :data="item"></mobileVerify>
     <div @click="submit">提交</div>
   </div>
 </template>
@@ -39,8 +39,19 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
           placeholder:'请输入电话号码',
           type:'number',
           item:{
-              message:'322',
-              message2:'222'
+              mobile:{
+                  icon:require('./public/img/test.png'),
+                  val:'',
+              },
+              imgCode:{
+                  icon:require('./public/img/test.png'),
+                  iconUrl:require('./public/img/test.png'),
+                  val:'',
+              },
+              verify:{
+                  icon:require('./public/img/test.png'),
+                  val:'',
+              },
           },
       }
     },
