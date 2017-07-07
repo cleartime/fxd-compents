@@ -1,8 +1,8 @@
 /**
  * Created by gxx on 2017/7/6.
  */
-import toask from '../components/common/toask/toask.vue'
-export const toaskMixin = {
+let toask = require('../components/common/toask/toask.vue')
+const toaskMixin = {
     data(){
         return{
             toaskSwitch:false,
@@ -51,3 +51,7 @@ export const toaskMixin = {
     }
 
 };
+
+module.exports = {
+    toaskMixin
+}
