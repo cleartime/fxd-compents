@@ -2,7 +2,7 @@
   "name": "fxd-components-example",
   "version": "1.2.0",
   "description": "this is fxd-components-example",
-  "main": "./dist/build.js",
+  "main": "./dist/",
   "dependencies": {
     "touchjs": "^0.2.14",
     "vue": "^2.3.4",

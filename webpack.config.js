@@ -16,7 +16,7 @@ module.exports = {
         /* 静态目录，可以直接从这里取文件 */
         publicPath: '/dist/',
         /* 文件名 */
-        filename: 'build.js',
+        filename: 'index.js',
         libraryTarget: 'umd'
     },
     module: {
