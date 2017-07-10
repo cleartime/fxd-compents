@@ -39,7 +39,7 @@
     let time2 = null;//Timeout定时器
     let time3 = null;//AnimationFrame
     export default{
-        name: 'toast',
+        name: 'loading',
         props: ['msg'],
         data(){
             return{

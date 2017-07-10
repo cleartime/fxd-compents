@@ -7,18 +7,18 @@ const htmlWebpackPlugin = require('html-webpack-plugin'); //html插件
 
 var opn = require('opn') //node打开浏览器的一个插件
 
-
+var entryUrl = process.env.NODE_ENV === 'production'?'./src/index.js':'./src/main.js';
 module.exports = {
-    entry: './src/index.js',
+    entry: entryUrl,
     output: {
         /* 输出目录，没有则新建 */
         path: path.resolve(__dirname, './dist'),
         /* 静态目录，可以直接从这里取文件 */
         publicPath: '/dist/',
         /* 文件名 */
-        filename: 'build.js'
+        filename: 'build.js',
+        libraryTarget: 'umd'
     },
-
     module: {
         rules: [{
             test: /\.vue$/,

@@ -1,6 +1,6 @@
 {
   "name": "fxd-components-example",
-  "version": "1.1.8",
+  "version": "1.2.0",
   "description": "this is fxd-components-example",
   "main": "./dist/build.js",
   "dependencies": {
