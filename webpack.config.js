@@ -38,7 +38,7 @@ module.exports = {
                 {
                     loader: 'url-loader',
                     options: {
-                        limit: 8192
+                        limit: 10000
                     }
                 }
             ]
@@ -75,11 +75,11 @@ if (process.env.NODE_ENV === 'production') {
                 NODE_ENV: '"production"'
             }
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     }
+        // })
     ]
 } else {
     module.exports.devtool = '#source-map'
