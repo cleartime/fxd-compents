@@ -32,7 +32,4 @@ const json = [{
     textType:'text',
     reg:/^\d{0,6}$/
 }]
-// export default json
-module.exports = {
-    json
-}
+export default json

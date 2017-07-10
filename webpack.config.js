@@ -38,7 +38,7 @@ module.exports = {
                 {
                     loader: 'url-loader',
                     options: {
-                        limit: 8192
+                        limit: 10000
                     }
                 }
             ]
@@ -79,12 +79,11 @@ if (process.env.NODE_ENV === 'production') {
             compress: {
                 warnings: false
             }
-        }),
-        new webpack.optimize.OccurenceOrderPlugin()
+        })
     ]
 } else {
     module.exports.devtool = '#source-map'
+    opn('http://localhost:8080')
 }
 
 
-opn('http://localhost:8080')

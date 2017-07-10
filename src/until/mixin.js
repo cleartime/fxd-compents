@@ -1,8 +1,8 @@
 /**
  * Created by gxx on 2017/7/6.
  */
-let toask = require('../components/common/toask/toask.vue')
-const toaskMixin = {
+import toask from '../components/common/toask/toask.vue'
+export const toaskMixin = {
     data(){
         return{
             toaskSwitch:false,
@@ -42,7 +42,6 @@ const toaskMixin = {
                 clearTimeout(this.toaskSwitchTime);
                 this.toaskSwitch = !this.toaskSwitch;
                 this.toaskSwitchTime = setTimeout(()=>{
-                    clearTimeout(this.toaskSwitchTime);
                     this.toaskSwitch = !this.toaskSwitch;
                 },this.timeIntervalnum*1000)
             }
@@ -51,7 +50,3 @@ const toaskMixin = {
     }
 
 };
-
-module.exports = {
-    toaskMixin
-}

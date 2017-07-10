@@ -1,16 +1,10 @@
 /**
  * Created by gxx on 2017/7/6.
  */
+import Vue from 'vue';
 
-let Vue  = require('vue')
-let bus = new Vue();
+const bus = new Vue();
 
-// export {
-//     bus
-// }
-
-
-
-module.exports = {
+export {
     bus
 }
