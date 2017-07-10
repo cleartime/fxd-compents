@@ -1,5 +1,4 @@
 node_modules/
-dist/
 index.html
 webpack.config.js
 .gitignore
@@ -8,4 +7,3 @@ webpack.config.js
 .DS_Store
 *.log
 coverage
-dist
