@@ -1,6 +1,7 @@
+import {bus} from './until/evenbus'
 
 module.exports = {
-    bus:require('./until/evenbus'),
+    bus,
     alert : require('./components/common/alert/alert.vue'),
     loading : require('./components/common/loading/loading.vue'),
     input : require('./components/ui/textInput/textInput.vue'),

@@ -9,7 +9,7 @@ var opn = require('opn') //node打开浏览器的一个插件
 
 
 module.exports = {
-    entry: './src/main.js',
+    entry: './src/index.js',
     output: {
         /* 输出目录，没有则新建 */
         path: path.resolve(__dirname, './dist'),
@@ -38,7 +38,7 @@ module.exports = {
                 {
                     loader: 'url-loader',
                     options: {
-                        limit: 10000
+                        limit: 8192
                     }
                 }
             ]
