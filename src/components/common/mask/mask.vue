@@ -22,7 +22,7 @@
 
 export default {
   mounted(){
-      document.getElementById('mask').addEventListener('touchmove',(e)=>e.preventDefault())
+      document.getElementById('mask').addEventListener('touchmove',(e)=>e.stopPropagation())
   },
   methods: {
     close(user) {

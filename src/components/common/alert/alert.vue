@@ -62,19 +62,17 @@
 
    .btn{
      position: relative;
-       padding: .4rem .3rem;
      text-align: center;
      display: flex;
      justify-content: space-around;
-     &:after{
-       position: absolute;
-       left: 50%;
-       top: 0;
-       width: 1px;
-       height: 100%;
-       content: '';
-       background: #EBEBEB;
-     }
+       span{
+           padding: .4rem .3rem;
+           flex: 1;
+           &:nth-child(2){
+               height: 100%;
+               border-left:1px solid #EBEBEB;
+          }
+       }
    }
     .submit{
       color: #00aaee;
@@ -99,8 +97,10 @@
         },
         methods: {
             handleAction(type){
-                this.callback(type)
-                this.visible = false
+                let sha = ['是的','你就四傻','系统判定你四傻','别挣扎了你就是傻','傻了吧']
+                this.callback(type);
+                this.content = sha[Math.floor(Math.random()*10)]
+//                this.visible = false
             },
         }
     }
