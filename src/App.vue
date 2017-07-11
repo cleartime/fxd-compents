@@ -12,7 +12,6 @@
             <!--@mobile_verify_img_cb="mobile_verify_img_cb"-->
             <!--@mobile_verify_sendcode_cb="mobile_verify_sendcode_cb"></mobileVerify>-->
     <div @click="submit">提交</div>
-    <div @click="submit1">提交1</div>
   </div>
 </template>
 
@@ -74,9 +73,6 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
         },
         mobile_verify_sendcode_cb(){
             console.log(2)
-        },
-        submit1(){
-            alert(2)
         },
         submit(){
 

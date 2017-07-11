@@ -4,8 +4,6 @@
     <list default="true" id="c92788dc-7607-4eba-a3d3-4e9f309a1273" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.vue" afterPath="$PROJECT_DIR$/src/App.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/common/alert/alert.vue" afterPath="$PROJECT_DIR$/src/components/common/alert/alert.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/common/mask/mask.vue" afterPath="$PROJECT_DIR$/src/components/common/mask/mask.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,13 +18,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="83" column="28" lean-forward="false" selection-start-line="83" selection-start-column="28" selection-end-line="83" selection-end-column="28" />
+            <state relative-caret-position="165">
+              <caret line="11" column="54" lean-forward="true" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
               <folding>
-                <element signature="e#948#1021#0" expanded="true" />
+                <element signature="e#912#985#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -42,7 +40,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="alert.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="alert.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/common/alert/alert.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="382">
@@ -191,8 +189,8 @@
         <option value="$PROJECT_DIR$/src/components/common/alert/index.js" />
         <option value="$PROJECT_DIR$/src/components/common/mask/mask.vue" />
         <option value="$PROJECT_DIR$/src/lib/reset.css" />
-        <option value="$PROJECT_DIR$/src/App.vue" />
         <option value="$PROJECT_DIR$/src/components/common/alert/alert.vue" />
+        <option value="$PROJECT_DIR$/src/App.vue" />
       </list>
     </option>
   </component>
@@ -687,7 +685,7 @@
       <workItem from="1499584375344" duration="153000" />
       <workItem from="1499648446469" duration="8689000" />
       <workItem from="1499659568165" duration="4938000" />
-      <workItem from="1499734720817" duration="18935000" />
+      <workItem from="1499734720817" duration="18982000" />
     </task>
     <task id="LOCAL-00001" summary="6.28">
       <created>1498643160226</created>
@@ -885,11 +883,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499765422376</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="alert">
+      <created>1499767816884</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1499767816884</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144771000" />
+    <option name="totallyTimeSpent" value="144818000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -1313,13 +1318,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/common/alert/alert.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="83" column="28" lean-forward="false" selection-start-line="83" selection-start-column="28" selection-end-line="83" selection-end-column="28" />
-          <folding>
-            <element signature="e#948#1021#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="382">
+          <caret line="92" column="21" lean-forward="true" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1331,11 +1334,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/alert/alert.vue">
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="92" column="21" lean-forward="true" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="165">
+          <caret line="11" column="54" lean-forward="true" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
+          <folding>
+            <element signature="e#912#985#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
