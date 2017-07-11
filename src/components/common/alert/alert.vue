@@ -1,33 +1,66 @@
 <template>
-  <div class="dialog alert">
-      <h2>{{msg}}</h2>
-      <p><span @click='cancel' class="cancel">取消</span><span class="submit" @click="submit">确认</span></p>
-  </div>
+    <fMask v-if="visible">
+        <transition name="msgbox-bounce">
+            <div class="dialog" :class="[content?'text':'']">
+                <div class="alert">
+                    <h2>{{title}}</h2>
+                    <div v-if="content" class="content" id="content">
+                        <p v-html="content"></p>
+                    </div>
+                    <p class="btn"><span v-if="!content"  @click='handleAction(0)' class="cancel">取消</span><span class="submit" @click="handleAction(1)">确认</span></p>
+                </div>
+            </div>
+        </transition>
+    </fMask>
 </template>
 <style lang="scss" scoped>
+    .msgbox-bounce-enter {
+        opacity: 0;
+        transform: translate3d(-50%, -50%, 0) scale(0.7);
+    }
+    .msgbox-bounce-leave-active {
+        opacity: 0;
+        transform: translate3d(-50%, -50%, 0) scale(0.9);
+    }
+    .dialog {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &.text{
+            .alert{
+                width: 80%;
+            }
+        }
+    }
  .alert{
-    position: fixed;
-   left: 50%;
-   top:50%;
-   z-index: 101;
-    background: #fff;
+     height: auto;
+     background: #fff;
+     z-index: 101;
+     overflow: hidden;
     border-radius: .3rem;
-    line-height: 22px;
-    height:2.1rem;
-     text-align: center;
-     max-width: 90%;
-     min-width: 3rem;
+    line-height: .22rem;
+     padding: 10px;
    font-size: .28rem;
    width: 4rem;
-   margin-left: -2rem;
-   background:#fff;
+
    h2{
+       text-align: center;
      padding: .4rem .3rem;
      font-weight: normal;
      font-size: .35rem;
      border-bottom: 1px solid #EBEBEB;
    }
-   p{
+     .content{
+            border:1px solid #EBEBEB;
+         padding: .1rem;
+         line-height:2;
+         overflow: auto;
+            max-height: calc(100vh - 4rem);
+     }
+
+   .btn{
      position: relative;
        padding: .4rem .3rem;
      text-align: center;
@@ -49,16 +82,26 @@
  }
 </style>
 <script>
+    import fMask from '../mask/mask.vue';
     export default{
         name: 'alert',
-        props: ['msg'],
-        methods: {
-            cancel(){
-              this.$emit('alertCb',0);
-            },
-            submit(){
-              this.$emit('alertCb',1);
+        data() {
+            return {
+                visible: false,
+                callback:null,
             }
+        },
+        props: ['title','content'],
+        components: {
+            fMask,
+        },
+        mounted(){
+        },
+        methods: {
+            handleAction(type){
+                this.callback(type)
+                this.visible = false
+            },
         }
     }
 </script>

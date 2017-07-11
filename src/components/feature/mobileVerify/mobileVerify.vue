@@ -1,39 +1,38 @@
 <template>
   <div class="mobileVerify">
-    <textInput
+    <cell
             :showIcon="true"
             :iconUrl="item.mobile.icon"
             :placeholder="'请输入手机号码'"
             :type="'mobile'"
             :model="item.mobile.val"
-            @text_input_cb="val=>{item.mobile.val=val}"></textInput>
+            @text_input_cb="val=>{item.mobile.val=val}"></cell>
     <div class="mobileVerify-imgCode"
          v-if='myImgCodeSwitch'>
-      <textInput :showIcon="true"
+      <cell :showIcon="true"
                  :type="'imgCode'"
                  :iconUrl="item.imgCode.icon"
                  :placeholder="'请输入图形验证码'"
                  :model="item.imgCode.val"
-                 @text_input_cb="val=>{item.imgCode.val=val}"></textInput>
+                 @text_input_cb="val=>{item.imgCode.val=val}"></cell>
       <img
               :src="item.imgCode.iconUrl"
               alt="" class="mobileVerify-imgCode-img"
               @click="mobile_verify_img">
     </div>
     <div class="mobileVerify-code">
-      <textInput
+      <cell
               :showIcon="true"
               :type="'code'"
               :iconUrl="item.verify.icon"
               :placeholder="'请输入验证码'"
               :model="item.verify.val"
-              @text_input_cb="val=>{item.verify.val=val}"></textInput>
+              @text_input_cb="val=>{item.verify.val=val}"></cell>
       <div class="mobileVerify-btn"
            :class="[codeShow?'dis':'']"
            @click="mobile_verify_sendcode"
       >{{timeText}}</div>
     </div>
-    <toask v-if="toaskSwitch" :msg="toaskMsg"></toask>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -98,8 +97,7 @@
   }
 </style>
 <script type="text/ecmascript-6">
-    import textInput from '../../ui/textInput/textInput.vue'
-    import {toaskMixin} from '../../../until/mixin'
+    import cell from '../../ui/cell/cell.vue'
     import {bus} from '../../../until/evenbus'
     let _timeout = 59;//倒计时秒数，默认59
     let _timeText = '发送验证码';
@@ -137,9 +135,8 @@
             }
         },
         props:['data','showIcon','iconRight','timeInterval','iconUrl','model','mobileModel','imgCodeSwitch'],
-        mixins:[toaskMixin],
         components: {
-            textInput,
+            cell,
         },
         mounted() {
             if(!!this.item.imgCode){

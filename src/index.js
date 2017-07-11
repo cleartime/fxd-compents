@@ -4,7 +4,7 @@ import {bus} from './until/evenbus'
 //  module.exports = {
 //     bus,
 //     loading : require('./components/common/loading/loading.vue'),
-//     input : require('./components/ui/textInput/textInput.vue'),
+//     input : require('./components/ui/cell/cell.vue'),
 //     radioTip : require('./components/ui/radioTip/radioTip.vue'),
 //     mobileVerify: require('./components/feature/mobileVerify/mobileVerify.vue'),
 // }
@@ -18,7 +18,7 @@ import {bus} from './until/evenbus'
 // export default a;
 
 import Loading from './components/common/loading/loading.vue';
-import Input from './components/ui/textInput/textInput.vue';
+import Input from './components/ui/cell/cell.vue';
 import RadioTip from './components/ui/radioTip/radioTip.vue';
 import MobileVerify from './components/feature/mobileVerify/mobileVerify.vue';
 

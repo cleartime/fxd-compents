@@ -12,7 +12,6 @@
             type="text"
             :placeholder="placeholder"
             v-model="myModel">
-    <toask v-if="toaskSwitch" :msg="toaskMsg"></toask>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -56,7 +55,7 @@
 </style>
 <script type="text/ecmascript-6">
   import regArr from "../../../config/regular"
-  import {toaskMixin} from '../../../until/mixin'
+  import Toast from '../../common/toask/'
   import {bus} from '../../../until/evenbus'
     export default{
         data(){
@@ -69,7 +68,6 @@
             }
         },
         props:['showIcon','iconRight','iconUrl','placeholder','type','model','maxlength','readOnly'],
-        mixins:[toaskMixin],
         mounted() {
             this.init();
         },
@@ -127,15 +125,13 @@
                     this.dis = false;
                     if(!this.myModel){
                         this.dis = true;
-                        this.toask_switch();
-                        this.toaskMsg = `${this.regObj.name}不能为空`;
+                        Toast(`${this.regObj.name}不能为空`);
                         this.$refs.dom.focus();
                         return false
                     }
                     if(!(this.regObj.reg.test(this.myModel))){
                         this.dis = true;
-                        this.toask_switch();
-                        this.toaskMsg = `${this.regObj.name}格式不正确`;
+                        Toast(`${this.regObj.name}格式不正确`);
                         this.$refs.dom.focus();
                         return false
                     }

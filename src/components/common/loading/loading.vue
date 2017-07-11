@@ -1,11 +1,17 @@
 <template>
-  <div class="loading" @click="preventDefault">
-      <div class="loading-outline" >
-          <img :src="imgUrl" alt="" >
+    <transition name="mint-indicator">
+      <div class="loading" @click="preventDefault" v-if="visible">
+          <div class="loading-outline" >
+              <img :src="imgUrl" alt="" >
+          </div>
       </div>
-  </div>
+    </transition>
 </template>
 <style lang="scss" scoped>
+    .mint-indicator-enter,
+    .mint-indicator-leave-active {
+        opacity: 0;
+    }
   .loading {
       position: fixed;
       top:0;
@@ -43,6 +49,7 @@
         props: ['msg'],
         data(){
             return{
+                visible:false,
                 imgUrl:'',
             }
         },

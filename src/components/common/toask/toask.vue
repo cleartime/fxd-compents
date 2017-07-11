@@ -1,9 +1,14 @@
 <template>
-  <div class="dialog toast">
-      <p>{{msg}}</p>
-  </div>
+    <transition name="mint-toast-pop">
+          <div class="dialog toast" v-if="visible" >
+              <p>{{message}}</p>
+          </div>
+    </transition>
 </template>
 <style lang="scss" scoped>
+    .mint-toast-pop-enter, .mint-toast-pop-leave-active {
+        opacity: 0
+    }
   .dialog {
     font-size:.32rem;
     z-index: 101;
@@ -25,6 +30,11 @@
 <script>
     export default{
         name: 'toast',
-        props: ['msg'],
+        props: ['message'],
+        data() {
+            return {
+                visible: false
+            };
+        },
     }
 </script>

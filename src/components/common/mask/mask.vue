@@ -1,6 +1,8 @@
 <template>
     <div>
-      <div id="mask" @click='close'></div>
+      <div id="mask" @click='close'>
+          <slot></slot>
+      </div>
     </div>
 </template>
 <style>
@@ -20,7 +22,7 @@
 
 export default {
   mounted(){
-    document.getElementById('mask').addEventListener('touchmove',(e)=>e.preventDefault())
+      document.getElementById('mask').addEventListener('touchmove',(e)=>e.preventDefault())
   },
   methods: {
     close(user) {
