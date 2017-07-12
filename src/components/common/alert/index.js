@@ -17,8 +17,14 @@ let getAnInstance = () => { //获取当前的实例
 let msgQueue = [];
 let currentMsg=null;
 let Alert = (options = {}) => {
-    let title = options.title || ''; //标题
-    let content = options.content || ''; //内容
+    let title = ''; //标题
+    let content = ''; //内容
+    if(typeof options === 'string'){
+        title = options; //标题
+    }else{
+        title = options.title; //标题
+        content = options.content; //内容
+    }
 
 
     let instance = getAnInstance();
