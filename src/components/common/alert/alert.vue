@@ -105,7 +105,6 @@
             handleAction(type){
                 let sha = ['傻是取消不了的','你就四傻','系统判定你四傻','别挣扎了你就四傻','傻了吧']
                 this.callback(type);
-                console.log(this.random())
                 if(!type){
                     this.no = sha[this.random()];
                     return
