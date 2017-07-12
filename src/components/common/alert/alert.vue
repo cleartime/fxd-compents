@@ -82,7 +82,7 @@
 <script>
     import fMask from '../mask/mask.vue';
     export default{
-        name: 'alert',
+        name: 'fxd-alert',
         data() {
             return {
                 visible: false,

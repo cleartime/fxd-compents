@@ -83,7 +83,7 @@
     import Toast from '../../common/toask/'
     import button from '../../common/button/button.vue'
     export default{
-        name:'cell',
+        name:'fxd-cell',
         data(){
             return {
                 myValue:this.value, //input里面的值

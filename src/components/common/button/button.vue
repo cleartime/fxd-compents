@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  name: 'mt-button',
+  name: 'fxd-button',
   data(){
     return {
     }

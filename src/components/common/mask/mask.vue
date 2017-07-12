@@ -21,6 +21,7 @@
 <script>
 
 export default {
+    name: 'fxd-mask',
   mounted(){
       document.getElementById('mask').addEventListener('touchmove',(e)=>e.stopPropagation())
   },

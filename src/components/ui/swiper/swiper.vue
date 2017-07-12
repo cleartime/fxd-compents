@@ -44,7 +44,7 @@
 <script>
     import touch from 'touchjs'
     export default{
-        name: 'swiper',
+        name: 'fxd-swiper',
         props:['list'],
         data(){
             return{

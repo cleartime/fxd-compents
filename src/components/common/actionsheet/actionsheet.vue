@@ -58,7 +58,7 @@
 </style>
 <script>
     export default{
-        name: 'actionsheet',
+        name: 'fxd-actionsheet',
         props: ['msg'],
         methods: {
             cancel(){

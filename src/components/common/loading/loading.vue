@@ -45,7 +45,7 @@
     let time2 = null;//Timeout定时器
     let time3 = null;//AnimationFrame
     export default{
-        name: 'loading',
+        name: 'fxd-loading',
         props: ['msg'],
         data(){
             return{

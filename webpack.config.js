@@ -12,9 +12,9 @@ module.exports = {
     entry: entryUrl,
     output: {
         /* 输出目录，没有则新建 */
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, './build'),
         /* 静态目录，可以直接从这里取文件 */
-        publicPath: '/dist/',
+        publicPath: '/build/',
         /* 文件名 */
         filename: 'index.js',
         libraryTarget: 'umd'
@@ -75,11 +75,11 @@ if (process.env.NODE_ENV === 'production') {
                 NODE_ENV: '"production"'
             }
         }),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //         warnings: false
-        //     }
-        // })
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
     ]
 } else {
     module.exports.devtool = '#source-map'

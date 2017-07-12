@@ -45,6 +45,7 @@
 </style>
 <script type="text/ecmascript-6">
     export default{
+        name:'fxd-radioTip',
         data(){
             return {
                 myTick: this.tick || true, //默认选中

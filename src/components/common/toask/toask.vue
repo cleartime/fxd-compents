@@ -29,7 +29,7 @@
 </style>
 <script>
     export default{
-        name: 'toast',
+        name: 'fxd-toast',
         props: ['message'],
         data() {
             return {
