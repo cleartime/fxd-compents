@@ -97,7 +97,7 @@
   }
 </style>
 <script type="text/ecmascript-6">
-    import cell from '../../ui/cell/cell.vue'
+    import cell from '../../ui/cell1/cell.vue'
     import {bus} from '../../../until/evenbus'
     let _timeout = 59;//倒计时秒数，默认59
     let _timeText = '发送验证码';

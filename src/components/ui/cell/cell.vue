@@ -1,34 +1,51 @@
 <template>
-  <div class="textInput" :class="[dis?'dis':'']">
-    <img
-            :src="iconUrl"
-            alt=""
-            class="icon"
-            :class="[iconRight?'right':'left']"
-            v-if="showIcon">
-    <input
-            @blur="verify_reg"
-            ref="dom"
-            type="text"
-            :placeholder="placeholder"
-            v-model="myModel">
+  <div class="fxd-cell"
+       :class="!!type?type:''"
+       :error="myError"
+  >
+    <div v-if="type===('imgText'||'all')" class="imgText">
+      <slot name="imgText">
+        <!--<img src="/" alt="">-->
+      </slot>
+    </div>
+      <input
+              :readonly="readonly"
+              :placeholder="myPlaceholder"
+              type="text"
+              class="input"
+              v-model="myValue"
+              @blur="blur"
+              :maxlength='myMaxlength'
+              ref="dom">
+    <div v-if="type===('btnText'||'all')" class="btnText">
+      <slot name="btnText">
+        <!--<fxd-btn type="inset">确定</fxd-btn>-->
+      </slot>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
-  .textInput{
-      &.dis{
-        border: 1px solid red
-       }
+  .fxd-cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 90%;
     overflow: hidden;
     margin:0 auto;
     border: 1px solid #00aaee;
     border-radius: .15rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 1rem;
-    img{
+    & > .input{//中间的input样式
+      flex: 1;
+      width: 100%;
+      border: none;
+      outline: none;
+      flex:1 auto;
+      font-size: .32rem;
+      padding:0 .15rem;
+      color: #00aaee;
+    }
+    &.imgText .imgText{//图片样式
       width: .6rem;
       height: .5rem;
       margin: 0 .22rem;
@@ -42,109 +59,110 @@
         padding-left: .1rem;
       }
     }
-    input{
-      width: 100%;
-      border: none;
-      outline: none;
-      flex:1 auto;
+    &.btnText .btnText{//按钮样式
+      border-top-right-radius: .15rem;
+      border-bottom-right-radius: .15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #00aaee;
+      color: #fff;
       font-size: .32rem;
-      padding:0 .15rem;
-      color: #00aaee;
+      &.dis{
+        pointer-events: none;
+        background: #ccc;
+      }
+    }
+    &[error]{//错误样式
+      border:1px solid red
     }
   }
 </style>
 <script type="text/ecmascript-6">
-  import regArr from "../../../config/regular"
-  import Toast from '../../common/toask/'
-  import {bus} from '../../../until/evenbus'
+    import regArr from "../../../config/regular"
+    import Toast from '../../common/toask/'
+    import button from '../../common/button/button.vue'
     export default{
+        name:'cell',
         data(){
             return {
-                regObj:'',//规则json
-                dis:false,//错误效果
-                time:null,//清除定时器用的
-                myModel:this.model,//组件内不能修改props的值，同时修改的值也不会同步到组件外层，即调用组件方不知道组件内部当前的状态是什么
-                myMaxlength:this.maxlength,
+                myValue:this.value, //input里面的值
+                regObj:null, //规则对象
+                myPlaceholder:this.placeholder,
+                myMaxlength:this.maxlength, //最大长度控制
+                myError:this.error, //是否错误
+                myReadonly:this.readonly, //是否只读
+                myVerify:typeof this.verify==='boolean'?false:true//判断要不要进行验证，默认是要的
             }
         },
-        props:['showIcon','iconRight','iconUrl','placeholder','type','model','maxlength','readOnly'],
+        props:['type','value','placeholder','maxlength','error','verify','readonly'],
+        components: {
+            'fxd-btn':button
+        },
         mounted() {
             this.init();
         },
         methods:{
             init(){
-                bus.$on('verify_defalut_cb',(childrenArr)=>{//默认验证
-//                    _this = _this[0]
-//                    if(_this._uid !== this._uid){//如果不是自身相同的组件则不需要触发
-//                        return false
-//                    }
-//                    childrenArr.forEach(t=>{
-//                        if(!!t.model){
-//                            return
-//                        }
-//                        t.dis = true;
-//                        t.toask_switch();
-//                        t.toaskMsg = `${t.regObj.name}不能为空`;
-//                        t.$refs.dom.focus();
-//                    })
-//                    let result = childrenArr.filter(t=>{
-//                        return t._uid === this._uid
-//                    })[0]
-                    for(let i=0,len=childrenArr.length;i<len;i++){
-                        let t = childrenArr[i];
-//                        if(t._uid === this._uid){//如果不是自身相同的组件则不需要触发
-//                            return false
-//                        }
-                        if(!t.model){
-                            t.dis = true;
-//                            t.toask_switch();
-//                            t.toaskMsg = `${t.regObj.name}不能为空`;
-                            t.$refs.dom.focus();
-                            break
-                        }
-                    }
+                if(!!this.type&&this.myVerify){//获取规则json
 
-                });
-                !!this.readOnly&&this.$refs.dom.setAttribute('readonly',!!this.readOnly)//设置类型默认为text
-                if(!!this.type){//获取规则json
                     this.regObj = regArr.filter(t=>{
+
                         return t.type===this.type
+
                     })[0];
+
                     this.$refs.dom.setAttribute('type',this.regObj.textType)//设置类型默认为text
+
                     this.myMaxlength = this.regObj.maxlength//强制设置类型长度
+
+                    this.myPlaceholder = `请输入${this.regObj.name}`;
+
+                    this.max_length();
                 }
-                this.max_length();
+            },
+            blur(){
+                this.myVerify&&this.verify_reg();
             },
             max_length(){//设置最大长度默认不设置
-                if(!!this.myMaxlength&&this.myModel.length>this.myMaxlength){
-                    this.myModel = this.myModel.substr(0,this.myMaxlength)
+
+                if(!!this.myMaxlength&&this.myValue.length>this.myMaxlength){
+
+                    this.myValue = this.myValue.substr(0,this.myMaxlength)
                 }
             },
             verify_reg(){//验证正则表达式
-                if(!!this.regObj){
-                    this.dis = false;
-                    if(!this.myModel){
-                        this.dis = true;
-                        Toast(`${this.regObj.name}不能为空`);
-                        this.$refs.dom.focus();
-                        return false
-                    }
-                    if(!(this.regObj.reg.test(this.myModel))){
-                        this.dis = true;
-                        Toast(`${this.regObj.name}格式不正确`);
-                        this.$refs.dom.focus();
-                        return false
-                    }
-                    bus.$on('text_input_verify_cb',(ca)=>{//返回验证的结果
-                        ca(this.regObj)
-                    });
+                this.myError = false
+                const set_dis_focus = ()=>{
+                    this.myError = true
+                    this.$refs.dom.focus();
                 }
+                if(!!this.regObj){
+
+                    if(!this.myValue){
+
+                        Toast(`${this.regObj.name}不能为空`);
+
+                        set_dis_focus();
+                    }
+
+                    if(!(this.regObj.reg.test(this.myValue))){
+
+                        Toast(`${this.regObj.name}格式不正确`);
+
+                        set_dis_focus();
+                    }
+
+                }
+
+
             }
         },
         watch:{
-            myModel(val) {
-                this.max_length();
-                this.$emit('text_input_cb',val);
+            myValue() {//控制输入长度
+
+                this.myVerify&&this.max_length();
+
             }
         },
     }
