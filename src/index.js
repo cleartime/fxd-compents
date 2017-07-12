@@ -17,17 +17,22 @@ import {bus} from './until/evenbus'
 // const a = 1;
 // export default a;
 
-import Loading from './components/common/loading/loading.vue';
-import Input from './components/ui/cell1/cell.vue';
+import Loading from './components/common/loading/';
+import Alert from './components/common/alert/';
+import Button from './components/common/button/button.vue';
+import Mask from './components/common/mask/mask.vue';
+import Cell from './components/ui/cell/cell.vue';
 import RadioTip from './components/ui/radioTip/radioTip.vue';
 import MobileVerify from './components/feature/mobileVerify/mobileVerify.vue';
 
 
 const install = function(Vue) {
   if (install.installed) return;
-
   Vue.component(Loading.name, Loading);
-  Vue.component(Input.name, Input);
+  Vue.component(Alert.name, Alert);
+    Vue.component(Button.name, Button);
+    Vue.component(Mask.name, Mask);
+  Vue.component(Cell.name, Cell);
   Vue.component(RadioTip.name, RadioTip);
   Vue.component(MobileVerify.name, MobileVerify);
 
@@ -46,7 +51,10 @@ module.exports = {
   install,
   version: '2.0.5',
   Loading,
-  Input,
+    Alert,
+    Button,
+    Mask,
+    Cell,
   RadioTip,
   MobileVerify
 };
