@@ -7,7 +7,7 @@
                     <div v-if="content" class="content" id="content">
                         <p v-html="content"></p>
                     </div>
-                    <p class="btn"><span v-if="!content"  @click='handleAction(0)' class="cancel">取消</span><span class="submit" @click="handleAction(1)">确认</span></p>
+                    <p class="btn"><span v-if="!content"  @click='handleAction(0)' class="cancel">{{no}}</span><span class="submit" @click="handleAction(1)">{{yes}}</span></p>
                 </div>
             </div>
         </transition>
@@ -87,6 +87,8 @@
             return {
                 visible: false,
                 callback:null,
+                yes:'确定',
+                no:'取消'
             }
         },
         props: ['title','content'],
@@ -96,10 +98,19 @@
         mounted(){
         },
         methods: {
+            random(){
+                let num = Math.floor(Math.random()*10);
+                return num>4?this.random():num
+            },
             handleAction(type){
-                let sha = ['是的','你就四傻','系统判定你四傻','别挣扎了你就是傻','傻了吧']
+                let sha = ['傻是取消不了的','你就四傻','系统判定你四傻','别挣扎了你就四傻','傻了吧']
                 this.callback(type);
-                this.content = sha[Math.floor(Math.random()*10)]
+                console.log(this.random())
+                if(!type){
+                    this.no = sha[this.random()];
+                    return
+                }
+                this.content = '承认了自己很傻了吧= =';
 //                this.visible = false
             },
         }
