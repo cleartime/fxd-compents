@@ -5,7 +5,7 @@ import Button from './components/common/button/button.vue';
 import Mask from './components/common/mask/mask.vue';
 import Cell from './components/ui/cell/cell.vue';
 import RadioTip from './components/ui/radioTip/radioTip.vue';
-import MobileVerify from './components/feature/mobileVerify/mobileVerify.vue';
+import MobileVerify from './components/feature/mobileVerify1/mobileVerify.vue';
 
 
 const install = function(Vue) {

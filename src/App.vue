@@ -7,13 +7,14 @@
     <!--<cell1cell :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=cell1cell>&ndash;&gt;&ndash;&gt;-->
     <!--<cell1cell :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=cell1cell>&ndash;&gt;&ndash;&gt;-->
     <!--<loading></loading>-->
-    <!--<mobileVerify-->
             <!--:data="item"-->
             <!--@mobile_verify_img_cb="mobile_verify_img_cb"-->
-            <!--@mobile_verify_sendcode_cb="mobile_verify_sendcode_cb"></mobileVerify>-->
+            <!--@mobile_verify_sendcode_cb="mobile_verify_sendcode_cbmobileVerify1rify>-->
     <!--<div @click="submit">提交</div>-->
-    <fxd-button @click.native="submit">确定</fxd-button>
-    <cell v-model="type" @input.native="e=>type=e.target.value" type="mobile" readonly :verify="false"></cell>
+    <!--<fmask></fmask>-->
+    <!--<fxd-button @click.native="submit">确定</fxd-button>-->
+    <!--<cell v-model="type" @input.native="e=>type=e.target.value" type="mobile" :verify="false"></cell>-->
+        <mobileVerify type="imgCode" :data="item" @mobile_verify_sendCode_cb="mobile_verify_sendCode_cb" @mobile_verify_submit_cb="mobile_verify_submit_cb"></mobileVerify>
   </div>
 </template>
 
@@ -40,23 +41,24 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
     data() {
       return {
           msg:'确定要退出么',
-          icon:require('./public/img/test.png'),
+          icon:require('./public/img/code.png'),
           placeholder:'请输入电话号码',
           type:'sfsdfds',
           item:{
               mobile:{
-                  icon:require('./public/img/test.png'),
+                  icon:require('./public/img/mobile.png'),
                   val:'',
               },
               imgCode:{
-                  icon:require('./public/img/test.png'),
-                  iconUrl:require('./public/img/test.png'),
+                  icon:require('./public/img/code.png'),
+                  iconUrl:require('./public/img/code.png'),
                   val:'',
               },
-              verify:{
-                  icon:require('./public/img/test.png'),
+              code:{
+                  icon:require('./public/img/code.png'),
                   val:'',
               },
+
           },
       }
     },
@@ -72,20 +74,14 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
     mounted() {
     },
     methods: {
-        mobile_verify_img_cb(){
-            console.log(1)
-        },
-        mobile_verify_sendcode_cb(){
-            console.log(2)
-        },
-        abc(e){
-            console.log()
-        },
         submit(){
           console.log(this.type)
-//            bus.$emit('mobile_verify_submit_cb',(data)=>{
-//                console.log(data)
-//            });
+        },
+        mobile_verify_sendCode_cb(){
+            console.log(1)
+        },
+        mobile_verify_submit_cb(){
+            console.log(2)
         }
     }
   }

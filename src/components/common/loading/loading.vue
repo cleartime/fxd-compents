@@ -1,6 +1,6 @@
 <template>
     <transition name="mint-indicator">
-      <div class="loading" @click="preventDefault" v-if="visible">
+      <div class="loading" @click="preventDefault" v-if="visible" >
           <div class="loading-outline" >
               <img :src="imgUrl" alt="" >
           </div>

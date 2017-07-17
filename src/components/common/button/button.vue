@@ -13,6 +13,9 @@
       height: 1rem;
       line-height: 1rem;
       border-radius: .1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       background: #1da9ff;
       color: #fff;
@@ -23,7 +26,7 @@
       }
       &.inset{
         width: auto;
-        height: auto;
+        height: 100%;
         border-radius: 0;
         font-size: .32rem;
         line-height: normal;

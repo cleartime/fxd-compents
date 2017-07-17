@@ -3,7 +3,7 @@
        :class="!!type?type:''"
        :error="myError"
   >
-    <div v-if="type===('imgText'||'all')" class="imgText">
+    <div v-if="type==='imgText'|| type==='all'" class="imgText">
       <slot name="imgText">
         <!--<img src="/" alt="">-->
       </slot>
@@ -17,7 +17,7 @@
               @blur="blur"
               :maxlength='myMaxlength'
               ref="dom">
-    <div v-if="type===('btnText'||'all')" class="btnText">
+    <div v-if="type==='btnText'||type==='all'" class="btnText">
       <slot name="btnText">
         <!--<fxd-btn type="inset">确定</fxd-btn>-->
       </slot>
@@ -45,29 +45,18 @@
       padding:0 .15rem;
       color: #00aaee;
     }
-    &.imgText .imgText{//图片样式
-      width: .6rem;
-      height: .5rem;
-      margin: 0 .22rem;
-      &.left{
-        border-right: 1px solid #00aaee;
-        padding-right: .1rem;
-      }
-      &.right{
-        border-left: 1px solid #00aaee;
-        order: 1;
-        padding-left: .1rem;
-      }
-    }
-    &.btnText .btnText{//按钮样式
-      border-top-right-radius: .15rem;
-      border-bottom-right-radius: .15rem;
+    &.imgText .imgText, &.all .imgText{//图片样式
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #00aaee;
-      color: #fff;
-      font-size: .32rem;
+      width: .6rem;
+      height: .5rem;
+      border-right: 1px solid #00aaee;
+      padding:0 .22rem;
+    }
+    &.btnText .btnText, &.all .btnText{//按钮样式
+      width: 4rem;
+      height: 1rem;
       &.dis{
         pointer-events: none;
         background: #ccc;
@@ -81,7 +70,6 @@
 <script type="text/ecmascript-6">
     import regArr from "../../../config/regular"
     import Toast from '../../common/toask/'
-    import button from '../../common/button/button.vue'
     export default{
         name:'fxd-cell',
         data(){
@@ -95,20 +83,17 @@
                 myVerify:typeof this.verify==='boolean'?false:true//判断要不要进行验证，默认是要的
             }
         },
-        props:['type','value','placeholder','maxlength','error','verify','readonly'],
-        components: {
-            'fxd-btn':button
-        },
+        props:['inputType','type','value','placeholder','maxlength','error','verify','readonly'],
         mounted() {
             this.init();
         },
         methods:{
             init(){
-                if(!!this.type&&this.myVerify){//获取规则json
+                if(!!this.inputType&&this.myVerify){//获取规则json
 
                     this.regObj = regArr.filter(t=>{
 
-                        return t.type===this.type
+                        return t.type===this.inputType
 
                     })[0];
 
@@ -144,6 +129,8 @@
                         Toast(`${this.regObj.name}不能为空`);
 
                         set_dis_focus();
+                        return false
+
                     }
 
                     if(!(this.regObj.reg.test(this.myValue))){
@@ -151,18 +138,18 @@
                         Toast(`${this.regObj.name}格式不正确`);
 
                         set_dis_focus();
+                        return false
+
                     }
 
                 }
-
+                this.$emit('verify_cb', this)
 
             }
         },
         watch:{
             myValue() {//控制输入长度
-
                 this.myVerify&&this.max_length();
-
             }
         },
     }
