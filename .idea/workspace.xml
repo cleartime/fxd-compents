@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c92788dc-7607-4eba-a3d3-4e9f309a1273" name="Default" comment="m">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/public/img/mobile.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/views/list.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/feature/mobileVerify1/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/feature/mobileVerify1/mobileVerify.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/until/index.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/public/img/test.png" afterPath="$PROJECT_DIR$/src/public/img/code.png" />
+    <list default="true" id="c92788dc-7607-4eba-a3d3-4e9f309a1273" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.vue" afterPath="$PROJECT_DIR$/src/App.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/common/button/button.vue" afterPath="$PROJECT_DIR$/src/components/common/button/button.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/common/loading/loading.vue" afterPath="$PROJECT_DIR$/src/components/common/loading/loading.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/common/mask/mask.vue" afterPath="$PROJECT_DIR$/src/components/common/mask/mask.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/feature/mobileVerify/mobileVerify.vue" afterPath="$PROJECT_DIR$/src/components/feature/mobileVerify/mobileVerify.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/ui/cell/README.md" afterPath="$PROJECT_DIR$/src/components/ui/cell/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/ui/cell/cell.vue" afterPath="$PROJECT_DIR$/src/components/ui/cell/cell.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/until/mixin.js" afterPath="$PROJECT_DIR$/src/until/mixin.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -48,8 +32,8 @@
       <file leaf-file-name="mixin.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/until/mixin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="19" />
+            <state relative-caret-position="270">
+              <caret line="18" column="10" lean-forward="true" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
               <folding>
                 <marker date="1500282005000" expanded="true" signature="63:2145" ph="{...}" />
               </folding>
@@ -646,7 +630,7 @@
       <workItem from="1500252458831" duration="110000" />
       <workItem from="1500253069500" duration="132000" />
       <workItem from="1500253228110" duration="3050000" />
-      <workItem from="1500256574346" duration="16117000" />
+      <workItem from="1500256574346" duration="16143000" />
     </task>
     <task id="LOCAL-00001" summary="6.28">
       <created>1498643160226</created>
@@ -893,11 +877,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499854966694</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="verify">
+      <created>1500282044414</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1500282044414</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217353000" />
+    <option name="totallyTimeSpent" value="217379000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -977,7 +968,8 @@
     <MESSAGE value="alert7.12" />
     <MESSAGE value="cell" />
     <MESSAGE value="fxd-ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="fxd-ui" />
+    <MESSAGE value="verify" />
+    <option name="LAST_COMMIT_MESSAGE" value="verify" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1326,8 +1318,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/until/mixin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="19" />
+        <state relative-caret-position="270">
+          <caret line="18" column="10" lean-forward="true" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
           <folding>
             <marker date="1500282005000" expanded="true" signature="63:2145" ph="{...}" />
           </folding>
