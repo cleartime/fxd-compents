@@ -35,7 +35,7 @@
            :disabled="sendCodeDisabled"
            type="inset">{{timeText}}</btn>
     </cell>
-    <btn @click.native="submit">确定</btn>
+    <btn @click.native="submit_btn" v-if="submit">确定</btn>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -78,7 +78,7 @@
                 },
             },
         },
-        props:['type','data'],
+        props:['type','data','submit'],
         mixins:[verify],
         components: {
             cell,
@@ -102,15 +102,17 @@
                 },1000)
             },
             change_pic(){
-
+                this.required([this.$refs.mobile]).then(()=>{
+                    this.$emit('mobile_verify_change_pic_cb');
+                })
             },
             send_code(){
                 this.required([this.$refs.mobile, this.$refs.codeImg]).then(()=>{
                     this.send_code_countdown();
-                    this.$emit('mobile_verify_sendCode_cb');
+                    this.$emit('mobile_verify_send_code_cb');
                 })
             },
-            submit(){
+            submit_btn(){
                 this.required().then(()=>{
                     this.$emit('mobile_verify_submit_cb');
                 })
