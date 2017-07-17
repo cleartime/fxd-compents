@@ -18,7 +18,7 @@
           v-if="type==='imgCode'"
           @click.native="change_pic">
       <img :src="item.imgCode.icon" alt="" slot="imgText">
-      <img :src="item.imgCode.icon" alt="" slot="btnText">
+      <img :src="item.imgCode.iconUrl" alt="" slot="btnText">
     </cell>
     <cell v-model="item.code.val"
           @input.native="e=>item.code.val=e.target.value"

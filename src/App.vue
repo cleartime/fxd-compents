@@ -56,7 +56,7 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
               },
               imgCode:{
                   icon:require('./public/img/code.png'),
-                  iconUrl:require('./public/img/code.png'),
+                  iconUrl:'',
                   val:'',
               },
               code:{
