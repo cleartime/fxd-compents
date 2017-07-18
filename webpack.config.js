@@ -25,7 +25,7 @@ module.exports = {
             loader: 'vue-loader'
         }, {
             test: /\.css$/,
-            loader: "style!css"
+            loader: "style-loader!css-loader"
         }, {
             test: /\.scss$/,
             use: ExtractTextPlugin.extract({

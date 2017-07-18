@@ -20,13 +20,15 @@
                       <!--@mobile_verify_change_pic_cb="mobile_verify_change_pic_cb"-->
                       <!--@mobile_verify_send_code_cb="mobile_verify_send_code_cb"-->
                       <!--@mobile_verify_submit_cb="mobile_verify_submit_cb"></mobileVerify>-->
-      <swiper></swiper>
+      <swiper :data="list"></swiper>
+    <swiper :data="list"></swiper>
   </div>
 </template>
 
 <style lang="scss">
-@import './lib/reset.css';
-@import 'lib/config';
+  @import './lib/transition.css';
+  @import './lib/reset.css';
+  @import 'lib/config';
 </style>
 
 <script>
@@ -36,7 +38,7 @@ import Alert from './components/common/alert/'
 import Loading from './components/common/loading/'
 import button from './components/common/button/button.vue'
 
-import swiper from './components/ui/cellSwiper/cellSwiper.vue'
+import swiper from './components/ui/cellPicker/cellPicker.vue'
 import cell from './components/ui/cell/cell.vue'
 import radioTip from './components/ui/radioTip/radioTip.vue'
 
@@ -50,6 +52,50 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
           icon: require('./public/img/code.png'),
           placeholder:'请输入电话号码',
           type:'sfsdfds',
+          list:{
+              values: [{
+                  "id_": "9c7c91c7b6c7436691bc2c89c65d953a",
+                  "code_": "1",
+                  "desc_": "资金周转",
+                  "status_": "1",
+                  "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a"
+                  },
+                  {
+                      "id_": "bfcaf33c5f3d4afba355893849e54c4e",
+                      "code_": "2",
+                      "desc_": "购物",
+                      "status_": "1",
+                      "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a"
+                  },
+                  {
+                      "id_": "e9380580f0fa4d308fb0e753b793415d",
+                      "code_": "3",
+                      "desc_": "旅游",
+                      "status_": "1",
+                      "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a"
+                  },
+                  {
+                      "id_": "e59ef2ff6e3d44078be2d4ade17b7269",
+                      "code_": "4",
+                      "desc_": "医疗",
+                      "status_": "1",
+                      "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a"
+                  },
+                  {
+                      "id_": "7b731966a9d148b18191d01f39bf81f9",
+                      "code_": "5",
+                      "desc_": "教育",
+                      "status_": "1",
+                      "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a"
+                  },
+                  {
+                      "id_": "bc744d6769b34df7896e8b3249aad675",
+                      "code_": "6",
+                      "desc_": "其它",
+                      "status_": "1",
+                      "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a"
+                  }]
+          },
           item:{
               mobile:{
                   icon:require('./public/img/mobile.png'),

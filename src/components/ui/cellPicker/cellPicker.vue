@@ -1,10 +1,11 @@
 <template>
     <div>
         <div class="cellSwiper" @click="handleChange">
-            <span class="swiper-right">123123</span>
+            <span class="swiper-right placeholder" v-if="showPlaceholder">{{placeholder}}</span>
+            <span class="swiper-right" v-if="!showPlaceholder">{{localValue}}</span>
             <span class="swiper-left" :class="[visible?'act':'']"></span>
         </div>
-        <swiper v-if="visible"></swiper>
+        <picker v-if="visible" :data="list" @picker_cancel_cb="picker_cancel_cb"  @picker_submit_cb="picker_submit_cb" @picker_change_cb="picker_change_cb"></picker>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -23,6 +24,9 @@
             color: #00aaee;
             flex: 1;
             padding-left: .3rem;
+            &.placeholder{
+                color: #767d84;
+            }
         }
         .swiper-left{
             height: 100%;
@@ -43,7 +47,7 @@
             }
             &.act{
                 &:after{
-                    transition: all 1s;
+                    transition: all .3s;
                     transform: rotate(45deg);
                 }
             }
@@ -52,25 +56,41 @@
 </style>
 <script>
 
-    import swiper from '../swiper/swiper.vue'
+    import picker from '../picker/picker.vue'
     export default{
-        name: 'fxd-cellSwiper',
-        props:['list'],
+        name: 'fxd-cellPicker',
+        props:['data'],
         data(){
             return{
-                visible: false
+                placeholder:'请选择借款用途',
+                showPlaceholder:true,
+                visible: false,
+                localValue:'',
+                list:this.data
             }
         },
         computed:{
         },
         components: {
-            swiper,
+            picker,
         },
         mounted() {
         },
         methods:{
             handleChange(){
                 this.visible = !this.visible
+            },
+            picker_change_cb(data){
+                this.showPlaceholder = false;
+                this.localValue =  data[0].desc_;
+            },
+            picker_cancel_cb(){
+                this.visible = !this.visible
+                this.showPlaceholder = true;
+            },
+            picker_submit_cb(data){
+                this.visible = !this.visible
+                console.log(data)
             }
         },
         watch:{
