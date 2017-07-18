@@ -20,8 +20,7 @@
                       <!--@mobile_verify_change_pic_cb="mobile_verify_change_pic_cb"-->
                       <!--@mobile_verify_send_code_cb="mobile_verify_send_code_cb"-->
                       <!--@mobile_verify_submit_cb="mobile_verify_submit_cb"></mobileVerify>-->
-      <swiper :data="list"></swiper>
-    <swiper :data="list"></swiper>
+      <cellPicker :data="list" valueKey="desc_" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>
   </div>
 </template>
 
@@ -38,7 +37,7 @@ import Alert from './components/common/alert/'
 import Loading from './components/common/loading/'
 import button from './components/common/button/button.vue'
 
-import swiper from './components/ui/cellPicker/cellPicker.vue'
+import cellPicker from './components/ui/cellPicker/cellPicker.vue'
 import cell from './components/ui/cell/cell.vue'
 import radioTip from './components/ui/radioTip/radioTip.vue'
 
@@ -52,7 +51,23 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
           icon: require('./public/img/code.png'),
           placeholder:'请输入电话号码',
           type:'sfsdfds',
+          list2:[{
+              flex: 1,
+              values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
+              className: 'slot1',
+              textAlign: 'right'
+          }, {
+              divider: true,
+              content: '-',
+              className: 'slot2'
+          }, {
+              flex: 1,
+              values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
+              className: 'slot3',
+              textAlign: 'left'
+          }],
           list:{
+              placeholder:'请选择借款用途', //提示语
               values: [{
                   "id_": "9c7c91c7b6c7436691bc2c89c65d953a",
                   "code_": "1",
@@ -117,7 +132,7 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
     components: {
         fmask,
         actionsheet,
-        swiper,
+        cellPicker,
         cell,
         radioTip,
         mobileVerify,
@@ -137,6 +152,9 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
         },
         mobile_verify_submit_cb(){
             console.log(2)
+        },
+        cell_picker_submit_cb(data){
+            console.log(data)
         }
     }
   }

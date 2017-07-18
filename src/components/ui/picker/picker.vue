@@ -4,10 +4,10 @@
         <div class="picker-outline" v-if="visible">
             <header class="picker-outline-header">
                 <button @click.stop.prevent="cancel">取消</button>
-                <h1>选择借款周期</h1>
-                <button @click="submit">确定</button>
+                <h1>{{data.placeholder}}</h1>
+                <button @click.stop.prevent="submit">确定</button>
             </header>
-            <Picker :slots="slots" :itemHeight="72" @change="onValuesChange" value-key="desc_" ></Picker>
+            <Picker :slots="slots" :itemHeight="72" @change="onValuesChange" :value-key="valueKey"></Picker>
         </div>
         </transition>
     </Fxd-mask>
@@ -185,42 +185,54 @@
     import { Picker } from 'mint-ui';
     export default{
         name: 'fxd-picker',
-        props:['data'],
+        props:['data','valueKey'],
         data(){
             return{
-                value:null,
-                maskVisible:true,
-                visible: false,
-                slots: [this.data]
+                value:null, // 返回给父组件的值
+                maskVisible:true, // mask开关
+                visible: false, // picker开关
+                slots: [this.data] // picker数据
             }
-        },
-        computed:{
         },
         components: {
             Picker,
             'Fxd-mask':mask,
         },
         mounted() {
-            this.visible = !this.visible
+            this.visible = !this.visible // 初始化打开picker
         },
         methods:{
+            /**
+             * 取消的事件
+             */
             cancel(){
               this.visible = !this.visible;
               this.$emit('picker_cancel_cb');
             },
+            /**
+             * 确定的事件返回当前选中的一个数组对象
+             */
             submit(){
                 this.visible = !this.visible;
                 this.$emit('picker_submit_cb',this.value);
             },
+            /**
+             * picker切换的事件返回当前选中的一个数组对象
+             * @param picker
+             * @param values
+             */
             onValuesChange(picker, values) {
                 this.value = values;
                 this.$emit('picker_change_cb',values);
             },
+            /**
+             * picker动画离开的时候同时关闭mask
+             * 如果父组件是cellPicker同时也关闭他
+             */
             afterLeave(){
-                this.maskVisible = !this.maskVisible
+                this.maskVisible = !this.maskVisible;
+                try{this.$parent.visible = false}catch (e){}
             }
-        },
-        watch:{
-        },
+        }
     }
 </script>

@@ -1,11 +1,11 @@
 <template>
     <div>
         <div class="cellSwiper" @click="handleChange">
-            <span class="swiper-right placeholder" v-if="showPlaceholder">{{placeholder}}</span>
+            <span class="swiper-right placeholder" v-if="showPlaceholder">{{data.placeholder}}</span>
             <span class="swiper-right" v-if="!showPlaceholder">{{localValue}}</span>
             <span class="swiper-left" :class="[visible?'act':'']"></span>
         </div>
-        <picker v-if="visible" :data="list" @picker_cancel_cb="picker_cancel_cb"  @picker_submit_cb="picker_submit_cb" @picker_change_cb="picker_change_cb"></picker>
+        <picker v-if="visible" :valueKey="valueKey" :data="list" @picker_cancel_cb="picker_cancel_cb"  @picker_submit_cb="picker_submit_cb" @picker_change_cb="picker_change_cb"></picker>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -59,41 +59,46 @@
     import picker from '../picker/picker.vue'
     export default{
         name: 'fxd-cellPicker',
-        props:['data'],
+        props:['data','valueKey'],
         data(){
             return{
-                placeholder:'请选择借款用途',
-                showPlaceholder:true,
-                visible: false,
-                localValue:'',
+                showPlaceholder:true, //picker有数据的时候关闭提示语
+                visible: false, //子组件开关
+                localValue:'', //picker切换的当前值
                 list:this.data
             }
-        },
-        computed:{
         },
         components: {
             picker,
         },
-        mounted() {
-        },
         methods:{
+            /**
+             * 选择框点击的事件
+             */
             handleChange(){
                 this.visible = !this.visible
             },
+            /**
+             * 子组件picker切换的时候同步绑定到父组件中
+             * @param data
+             */
             picker_change_cb(data){
                 this.showPlaceholder = false;
                 this.localValue =  data[0].desc_;
             },
+            /**
+             * picker取消的时候还原Placeholder提示语
+             */
             picker_cancel_cb(){
-                this.visible = !this.visible
                 this.showPlaceholder = true;
             },
+            /**
+             * picker点击确定的事件
+             * @param data
+             */
             picker_submit_cb(data){
-                this.visible = !this.visible
-                console.log(data)
+                this.$emit('cell_picker_submit_cb',data);
             }
-        },
-        watch:{
-        },
+        }
     }
 </script>
