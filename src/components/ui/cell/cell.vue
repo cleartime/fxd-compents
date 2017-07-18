@@ -36,7 +36,6 @@
     border-radius: .15rem;
     height: 1rem;
     & > .input{//中间的input样式
-      flex: 1;
       width: 100%;
       border: none;
       outline: none;
