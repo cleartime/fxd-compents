@@ -21,6 +21,7 @@
                       <!--@mobile_verify_send_code_cb="mobile_verify_send_code_cb"-->
                       <!--@mobile_verify_submit_cb="mobile_verify_submit_cb"></mobileVerify>-->
       <cellPicker :data="list" valueKey="desc_" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>
+    <!--<cellPicker :data="list1" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
   </div>
 </template>
 
