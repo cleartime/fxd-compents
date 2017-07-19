@@ -103,6 +103,9 @@
                 return num>4?this.random():num
             },
             handleAction(type){
+                if(this.yes === '是的我很傻，放我出去'){
+                    this.visible = false
+                }
                 let sha = ['傻是取消不了的','你就四傻','系统判定你四傻','别挣扎了你就四傻','傻了吧']
                 this.callback(type);
                 if(!type){
@@ -110,7 +113,7 @@
                     return
                 }
                 this.content = '承认了自己很傻了吧= =';
-//                this.visible = false
+                this.yes = '是的我很傻，放我出去';
             },
         }
     }

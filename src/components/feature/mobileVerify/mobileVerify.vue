@@ -52,7 +52,7 @@
     let _timeout = 59;//倒计时秒数，默认59
     let _timeText = '发送验证码';
     export default{
-        name: 'fxd-mobileVerify1',
+        name: 'fxd-mobileVerify',
         data(){
             return {
                 time:null,//清除定时器用的
