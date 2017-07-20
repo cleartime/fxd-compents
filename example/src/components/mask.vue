@@ -1,6 +1,5 @@
 <template>
     <div>
-        <fxd-mask></fxd-mask>
     </div>
 </template>
 <style lang="scss" scoped>

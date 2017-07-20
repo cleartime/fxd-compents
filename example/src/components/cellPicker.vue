@@ -1,6 +1,5 @@
 <template>
     <div>
-        <fxd-cellPicker :data="list" valueKey="desc_" @cell_picker_submit_cb="cell_picker_submit_cb"></fxd-cellPicker>
     </div>
 </template>
 <style lang="scss" scoped>

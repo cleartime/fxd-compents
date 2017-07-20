@@ -1,6 +1,5 @@
 <template>
     <div>
-       <fxd-radio-tip></fxd-radio-tip>
     </div>
 </template>
 <style lang="scss" scoped>

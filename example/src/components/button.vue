@@ -1,6 +1,5 @@
 <template>
     <div>
-        <fxd-button></fxd-button>
     </div>
 </template>
 <style lang="scss" scoped>
