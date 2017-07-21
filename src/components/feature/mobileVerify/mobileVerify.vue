@@ -64,15 +64,15 @@
         computed: {
             item:{
                 get: function () {
-                    const { mobile,imgCode,code } = this.data;
+                    const { mobile, imgCode, code } = this.data;
                     if(!mobile.icon){
                         mobile.icon = require('../../../public/img/mobile.png');
                     }
                     if(!imgCode.icon){
-                        mobile.icon = require('../../../public/img/code.png');
+                        imgCode.icon = require('../../../public/img/code.png');
                     }
                     if(!code.icon){
-                        mobile.icon = require('../../../public/img/code.png');
+                        code.icon = require('../../../public/img/code.png');
                     }
                     return this.data
                 },

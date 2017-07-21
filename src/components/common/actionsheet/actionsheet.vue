@@ -1,29 +1,33 @@
 <template>
-  <div class="dialog actionsheet">
-    <!--<ul>-->
-      <!--<li :class="!index?'title':''" v-for="(i,index) in msg">-->
-        <!--{{i}}-->
-      <!--</li>-->
-    <!--</ul>-->
-    <ul>
-      <li class="title">
-        热线服务时间：9:00-17:30（工作日）
-      </li>
-      <li>
-        <a href='tel:4008-678-655'>
-          4008-678-655
-        </a>
-      </li>
-    </ul>
-    <p @click="cancel" class="act">取消</p>
-  </div>
+  <Fxd-mask v-if="maskVisible" @click.native="cancel">
+    <transition name="picker" v-on:after-leave="afterLeave">
+      <div class="dialog actionsheet" v-if="visible" >
+        <!--<ul>-->
+          <!--<li :class="!index?'title':''" v-for="(i,index) in msg">-->
+            <!--{{i}}-->
+          <!--</li>-->
+        <!--</ul>-->
+        <ul>
+          <li class="title" @click.stop.prevent>
+            热线服务时间：9:00-17:30（工作日）
+          </li>
+          <li>
+            <a href='tel:4008-678-655'>
+              4008-678-655
+            </a>
+          </li>
+        </ul>
+        <p @click="cancel" class="act">取消</p>
+      </div>
+    </transition>
+  </Fxd-mask>
 </template>
 <style lang="scss" scoped>
   .actionsheet{
     position: fixed;
     bottom:0;
-    width: 98%;
-    left: 1%;
+    width: 90%;
+    left: 5%;
     z-index: 101;
     font-size: .28rem;
     text-align: center;
@@ -57,13 +61,30 @@
 
 </style>
 <script>
+    import mask from '../../common/mask/mask.vue';
     export default{
         name: 'fxd-actionsheet',
+        data(){
+            return{
+                maskVisible:true, // mask开关
+                visible:false
+            }
+        },
         props: ['msg'],
+        components: {
+            'Fxd-mask':mask,
+        },
+        mounted() {
+            this.visible = !this.visible // 初始化打开picker
+        },
         methods: {
             cancel(){
-              this.$emit('actionsheetCb');
+                this.visible = !this.visible;
+                this.$emit('actionsheetCb');
             },
+            afterLeave(){
+                this.maskVisible = false
+            }
         }
     }
 </script>

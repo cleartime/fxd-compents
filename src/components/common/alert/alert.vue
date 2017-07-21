@@ -1,7 +1,7 @@
 <template>
     <fMask v-if="visible">
-        <transition name="msgbox-bounce">
-            <div class="dialog" :class="[content?'text':'']">
+        <transition name="smallBig">
+            <div class="dialog" :class="[content?'text':'']" v-if="dialogVisible">
                 <div class="alert">
                     <h2>{{title}}</h2>
                     <div v-if="content" class="content" id="content">
@@ -14,14 +14,6 @@
     </fMask>
 </template>
 <style lang="scss" scoped>
-    .msgbox-bounce-enter {
-        opacity: 0;
-        transform: translate3d(-50%, -50%, 0) scale(0.7);
-    }
-    .msgbox-bounce-leave-active {
-        opacity: 0;
-        transform: translate3d(-50%, -50%, 0) scale(0.9);
-    }
     .dialog {
         width: 100%;
         height: 100%;
@@ -85,6 +77,7 @@
         name: 'fxd-alert',
         data() {
             return {
+                dialogVisible:false,
                 visible: false,
                 callback:null,
                 yes:'确定',
@@ -96,6 +89,9 @@
             fMask,
         },
         mounted(){
+            setTimeout(()=>{
+                this.dialogVisible = !this.dialogVisible
+            },0)
         },
         methods: {
             random(){
@@ -103,7 +99,7 @@
                 return num>4?this.random():num
             },
             handleAction(type){
-                if(this.yes === '承认了自己很傻了吧= ='){
+                if(this.yes === '欣然接受'){
                     this.visible = false
                 }
                 let sha = ['傻是取消不了的','你就四傻','系统判定你四傻','别挣扎了你就四傻','傻了吧']
@@ -113,7 +109,7 @@
                     return
                 }
                 this.content = '承认了自己很傻了吧= =';
-                this.yes = '是的我很傻= =';
+                this.yes = '欣然接受';
             },
         }
     }

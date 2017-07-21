@@ -8,6 +8,7 @@ import Cell from './components/ui/cell/cell.vue';
 import Picker from './components/ui/picker/picker.vue';
 import CellPicker from './components/ui/cellPicker/cellPicker.vue';
 import RadioTip from './components/ui/radioTip/radioTip.vue';
+import Header from './components/ui/header/header.vue';
 import MobileVerify from './components/feature/mobileVerify/mobileVerify.vue';
 
 
@@ -23,6 +24,7 @@ const install = function(Vue) {
     Vue.component(Picker.name, Picker);
     Vue.component(CellPicker.name, CellPicker);
   Vue.component(RadioTip.name, RadioTip);
+    Vue.component(Header.name, Header);
   Vue.component(MobileVerify.name, MobileVerify);
 };
 
@@ -43,5 +45,6 @@ module.exports = {
     Picker,
     CellPicker,
   RadioTip,
+    Header,
   MobileVerify
 };

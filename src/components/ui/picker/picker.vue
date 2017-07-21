@@ -1,7 +1,7 @@
 <template>
     <Fxd-mask v-if="maskVisible" @click.native="submit">
         <transition name="picker" v-on:after-leave="afterLeave">
-        <div class="picker-outline" v-if="visible">
+        <div class="picker-outline" v-if="visible" @click.stop.prevent>
             <header class="picker-outline-header">
                 <button @click.stop.prevent="cancel">取消</button>
                 <h1>{{data.placeholder}}</h1>
@@ -37,6 +37,8 @@
             button{
                 color: #0894ec;
                 font-size: .3rem;
+                border:none;
+                background: none;
             }
         }
     }

@@ -3,6 +3,7 @@
     <!--<alert :msg="msg"></alert>-->
     <!--<toask :msg='msg'></toask>-->
     <!--<fmask/>-->
+    <!--<fxd-header title="这是标题" @header_back_cb="header_back_cb"/>-->
     <!--<actionsheet></actionsheet>-->
     <!--<cell1cell :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=cell1cell>&ndash;&gt;&ndash;&gt;-->
     <!--<cell1cell :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=cell1cell>&ndash;&gt;&ndash;&gt;-->
@@ -14,13 +15,13 @@
     <!--<fmask></fmask>-->
     <!--<fxd-button @click.native="submit">确定</fxd-button>-->
     <!--<cell v-model="type" @input.native="e=>type=e.target.value" type="mobile" :verify="false"></cell>-->
-        <!--<mobileVerify-->
-                <!--type="imgCode"-->
-                      <!--:data="item"-->
-                      <!--@mobile_verify_change_pic_cb="mobile_verify_change_pic_cb"-->
-                      <!--@mobile_verify_send_code_cb="mobile_verify_send_code_cb"-->
-                      <!--@mobile_verify_submit_cb="mobile_verify_submit_cb"></mobileVerify>-->
-      <cellPicker :data="list" valueKey="desc_" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>
+        <mobileVerify
+                type="imgCode"
+                      :data="item"
+                      @mobile_verify_change_pic_cb="mobile_verify_change_pic_cb"
+                      @mobile_verify_send_code_cb="mobile_verify_send_code_cb"
+                      @mobile_verify_submit_cb="mobile_verify_submit_cb"></mobileVerify>
+      <!--<cellPicker :data="list" valueKey="desc_" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
     <!--<cellPicker :data="list1" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
   </div>
 </template>
@@ -41,6 +42,7 @@ import button from './components/common/button/button.vue'
 import cellPicker from './components/ui/cellPicker/cellPicker.vue'
 import cell from './components/ui/cell/cell.vue'
 import radioTip from './components/ui/radioTip/radioTip.vue'
+import header from './components/ui/header/header.vue'
 
 import {bus} from './until/evenbus'
 import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
@@ -49,7 +51,6 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
     data() {
       return {
           msg:'确定要退出么',
-          icon: require('./public/img/code.png'),
           placeholder:'请输入电话号码',
           type:'sfsdfds',
           list2:[{
@@ -114,16 +115,16 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
           },
           item:{
               mobile:{
-                  icon:require('./public/img/mobile.png'),
+//                  icon:require('./public/img/mobile.png'),
                   val:'',
               },
               imgCode:{
-                  icon:require('./public/img/code.png'),
+//                  icon:require('./public/img/code.png'),
                   iconUrl:'',
                   val:'',
               },
               code:{
-                  icon:require('./public/img/code.png'),
+//                  icon:require('./public/img/code.png'),
                   val:'',
               },
 
@@ -137,9 +138,11 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
         cell,
         radioTip,
         mobileVerify,
+        'fxd-header':header,
         'fxd-button':button
     },
     mounted() {
+        console.log(this.item)
     },
     methods: {
         submit(){
@@ -156,6 +159,9 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
         },
         cell_picker_submit_cb(data){
             console.log(data)
+        },
+        header_back_cb(){
+            console.log(33)
         }
     }
   }
