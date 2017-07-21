@@ -193,22 +193,6 @@
                 value:null, // 返回给父组件的值
                 maskVisible:true, // mask开关
                 visible: false, // picker开关
-                slots2:[{
-                    flex: 1,
-                    values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
-                    className: 'slot1',
-                    textAlign: 'right'
-                },{
-                    flex: 1,
-                    values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
-                    className: 'slot1',
-                    textAlign: 'center'
-                }, {
-                    flex: 1,
-                    values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
-                    className: 'slot3',
-                    textAlign: 'left'
-                }],
                 slots: [this.data] // picker数据
             }
         },
@@ -218,6 +202,9 @@
         },
         mounted() {
             this.visible = !this.visible // 初始化打开picker
+            if(!this.valueKey){
+                this.slots = this.data.values
+            }
         },
         methods:{
             /**

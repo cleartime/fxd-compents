@@ -16,13 +16,14 @@
     <!--<fxd-button @click.native="submit">确定</fxd-button>-->
     <!--<cell v-model="type" @input.native="e=>type=e.target.value" type="mobile" :verify="false"></cell>-->
         <!--<mobileVerify-->
-                <!--type="imgCode"-->
                       <!--:data="item"-->
                       <!--@mobile_verify_change_pic_cb="mobile_verify_change_pic_cb"-->
                       <!--@mobile_verify_send_code_cb="mobile_verify_send_code_cb"-->
                       <!--@mobile_verify_submit_cb="mobile_verify_submit_cb"></mobileVerify>-->
       <!--<cellPicker :data="list" valueKey="desc_" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
     <!--<cellPicker :data="list1" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
+      <!--<picker :data="list" valueKey="desc_"></picker>-->
+      <picker :data="list2"></picker>
   </div>
 </template>
 
@@ -39,6 +40,7 @@ import Alert from './components/common/alert/'
 import Loading from './components/common/loading/'
 import button from './components/common/button/button.vue'
 
+import picker from './components/ui/picker/picker.vue'
 import cellPicker from './components/ui/cellPicker/cellPicker.vue'
 import cell from './components/ui/cell/cell.vue'
 import radioTip from './components/ui/radioTip/radioTip.vue'
@@ -53,21 +55,24 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
           msg:'确定要退出么',
           placeholder:'请输入电话号码',
           type:'sfsdfds',
-          list2:[{
-              flex: 1,
-              values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
-              className: 'slot1',
-              textAlign: 'right'
-          }, {
-              divider: true,
-              content: '-',
-              className: 'slot2'
-          }, {
-              flex: 1,
-              values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
-              className: 'slot3',
-              textAlign: 'left'
-          }],
+          list2:{
+              placeholder:'请选择借款用途1', //提示语
+              values:[{
+                  flex: 1,
+                  values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
+                  className: 'slot1',
+                  textAlign: 'right'
+              }, {
+                  divider: true,
+                  content: '-',
+                  className: 'slot2'
+              }, {
+                  flex: 1,
+                  values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
+                  className: 'slot3',
+                  textAlign: 'left'
+              }]
+          },
           list:{
               placeholder:'请选择借款用途', //提示语
               values: [{
@@ -138,6 +143,7 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
         cell,
         radioTip,
         mobileVerify,
+        picker,
         'fxd-header':header,
         'fxd-button':button
     },

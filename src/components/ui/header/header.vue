@@ -1,18 +1,29 @@
 <template>
-    <div class="header">
-        <span class="header-back" @click="back" :class="[backSwitch?'dis':'']"></span>
-        <span class="header-title">{{title}}</span>
-        <span class="header-qrcode" :class="[qrCodeSwitch?'':'dis']"><img src="/" alt="" ></span>
+    <div class="header-outline">
+        <div class="header">
+            <span class="header-back" :class="[backSwitch?'dis':'']" @click="back"></span>
+            <span class="header-title">{{title}}</span>
+            <slot>
+                <span class="header-qrcode" :class="[qrCodeSwitch?'':'dis']"><img src="/" alt="" ></span>
+            </slot>
+        </div>
     </div>
 </template>
 <style lang="scss" scoped>
+    .header-outline{
+        position: fixed;
+        height: .96rem;
+        width: 100%;
+        top:0;
+        left: 0;
+    }
     .header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         background: #0894ec;
         font-size: .32rem;
-        height: .96rem;
+        height: 100%;
         color: #fff;
         .header-title{
         }
@@ -67,7 +78,7 @@
 <script>
     export default{
         name: 'fxd-header',
-        props:['title','qrCodeSwitch','backSwitch'],
+        props:['title','qrCodeSwitch','backSwitch','backUrl'],
         data(){
             return{
                 visible: false
@@ -81,8 +92,10 @@
         },
         methods:{
             back(){
-                this.$emit('header_back_cb');
-                history.back();
+                this.$emit('header_back_cb')
+                if(!this.backUrl){
+                    history.back();
+                }
             }
         },
         watch:{

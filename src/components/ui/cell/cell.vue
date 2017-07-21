@@ -26,6 +26,7 @@
 </template>
 <style lang="scss" scoped>
   .fxd-cell{
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;

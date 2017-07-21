@@ -65,15 +65,15 @@
             item:{
                 get: function () {
                     const { mobile, imgCode, code } = this.data;
-                    if(!mobile.icon){
+                    try{
                         mobile.icon = require('../../../public/img/mobile.png');
-                    }
-                    if(!imgCode.icon){
+                    }catch (e){}
+                    try{
                         imgCode.icon = require('../../../public/img/code.png');
-                    }
-                    if(!code.icon){
+                    }catch (e){}
+                    try{
                         code.icon = require('../../../public/img/code.png');
-                    }
+                    }catch (e){}
                     return this.data
                 },
             },
@@ -107,7 +107,13 @@
                 })
             },
             send_code(){
-                this.required([this.$refs.mobile, this.$refs.codeImg]).then(()=>{
+                let requiredArr = [];
+                if(this.type!=='imgCode'){
+                    requiredArr = [this.$refs.mobile];
+                }else{
+                    requiredArr = [this.$refs.mobile, this.$refs.codeImg]
+                }
+                this.required(requiredArr).then(()=>{
                     this.send_code_countdown();
                     this.$emit('mobile_verify_send_code_cb');
                 })
