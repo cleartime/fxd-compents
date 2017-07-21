@@ -15,12 +15,12 @@
     <!--<fmask></fmask>-->
     <!--<fxd-button @click.native="submit">确定</fxd-button>-->
     <!--<cell v-model="type" @input.native="e=>type=e.target.value" type="mobile" :verify="false"></cell>-->
-        <mobileVerify
-                type="imgCode"
-                      :data="item"
-                      @mobile_verify_change_pic_cb="mobile_verify_change_pic_cb"
-                      @mobile_verify_send_code_cb="mobile_verify_send_code_cb"
-                      @mobile_verify_submit_cb="mobile_verify_submit_cb"></mobileVerify>
+        <!--<mobileVerify-->
+                <!--type="imgCode"-->
+                      <!--:data="item"-->
+                      <!--@mobile_verify_change_pic_cb="mobile_verify_change_pic_cb"-->
+                      <!--@mobile_verify_send_code_cb="mobile_verify_send_code_cb"-->
+                      <!--@mobile_verify_submit_cb="mobile_verify_submit_cb"></mobileVerify>-->
       <!--<cellPicker :data="list" valueKey="desc_" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
     <!--<cellPicker :data="list1" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
   </div>
@@ -142,7 +142,6 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
         'fxd-button':button
     },
     mounted() {
-        console.log(this.item)
     },
     methods: {
         submit(){

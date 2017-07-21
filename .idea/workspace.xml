@@ -2,39 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c92788dc-7607-4eba-a3d3-4e9f309a1273" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/md/Actionsheet.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/md/Alert.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/md/Button.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/md/Cell.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/md/CellPicker.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/md/Loading.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/md/Mask.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/md/MobileVerify.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/md/Picker.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/md/RadioTip.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/src/md/Toask.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/ui/header/header.vue" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/example/src/components/alert.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/example/src/components/button.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/example/src/components/cell.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/example/src/components/cellPicker.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/example/src/components/loading.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/example/src/components/mask.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/example/src/components/mobileVerify.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/example/src/components/picker.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/example/src/components/radioTip.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/example/src/components/toask.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/example/src/views/list.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/ui/swiper1/swiper.vue" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/example/src/components/actionsheet.vue" afterPath="$PROJECT_DIR$/mobile/src/components/header.vue" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/ui/swiper1/README.md" afterPath="$PROJECT_DIR$/src/components/ui/header/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.vue" afterPath="$PROJECT_DIR$/src/App.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/common/actionsheet/actionsheet.vue" afterPath="$PROJECT_DIR$/src/components/common/actionsheet/actionsheet.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/common/alert/alert.vue" afterPath="$PROJECT_DIR$/src/components/common/alert/alert.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/feature/mobileVerify/mobileVerify.vue" afterPath="$PROJECT_DIR$/src/components/feature/mobileVerify/mobileVerify.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/ui/picker/picker.vue" afterPath="$PROJECT_DIR$/src/components/ui/picker/picker.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -49,14 +18,24 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1605">
-              <caret line="107" column="19" lean-forward="true" selection-start-line="107" selection-start-column="19" selection-end-line="107" selection-end-column="19" />
+            <state relative-caret-position="76">
+              <caret line="144" column="6" lean-forward="true" selection-start-line="144" selection-start-column="6" selection-end-line="144" selection-end-column="6" />
               <folding>
-                <element signature="e#1787#1860#0" expanded="true" />
+                <element signature="e#1829#1902#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="alert.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mobile/src/components/alert.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -165,8 +144,8 @@
         <option value="$PROJECT_DIR$/mobile/src/components/loading.vue" />
         <option value="$PROJECT_DIR$/mobile/src/components/mask.vue" />
         <option value="$PROJECT_DIR$/mobile/src/components/mobileVerify.vue" />
-        <option value="$PROJECT_DIR$/src/App.vue" />
         <option value="$PROJECT_DIR$/src/components/feature/mobileVerify/mobileVerify.vue" />
+        <option value="$PROJECT_DIR$/src/App.vue" />
       </list>
     </option>
   </component>
@@ -361,32 +340,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actionsheet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fxd-components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fxd-components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="mobile" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -406,28 +359,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fxd-components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fxd-components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -558,6 +489,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fxd-components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fxd-components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -710,7 +655,7 @@
       <workItem from="1500338647081" duration="31382000" />
       <workItem from="1500445250417" duration="9207000" />
       <workItem from="1500513533119" duration="1516000" />
-      <workItem from="1500515914512" duration="26003000" />
+      <workItem from="1500515914512" duration="26206000" />
     </task>
     <task id="LOCAL-00001" summary="6.28">
       <created>1498643160226</created>
@@ -1027,11 +972,18 @@
       <option name="project" value="LOCAL" />
       <updated>1500530042624</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="组件介绍界面搭建">
+      <created>1500617264764</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1500617264764</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="290685000" />
+    <option name="totallyTimeSpent" value="290888000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1334,14 +1286,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/components/alert.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="46" lean-forward="true" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ui/header/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1496,14 +1440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/views/home.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1540,13 +1476,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1605">
-          <caret line="107" column="19" lean-forward="true" selection-start-line="107" selection-start-column="19" selection-end-line="107" selection-end-column="19" />
+        <state relative-caret-position="76">
+          <caret line="144" column="6" lean-forward="true" selection-start-line="144" selection-start-column="6" selection-end-line="144" selection-end-column="6" />
           <folding>
-            <element signature="e#1787#1860#0" expanded="true" />
+            <element signature="e#1829#1902#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/components/alert.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
