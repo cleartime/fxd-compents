@@ -23,7 +23,8 @@
       <!--<cellPicker :data="list" valueKey="desc_" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
     <!--<cellPicker :data="list1" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
       <!--<picker :data="list" valueKey="desc_"></picker>-->
-      <picker :data="list2"></picker>
+      <!--<picker :data="list2"></picker>-->
+    <cell inputType="password"></cell>
   </div>
 </template>
 

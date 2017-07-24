@@ -34,8 +34,8 @@ const json = [{
 },{
     type:'password',
     name:'密码',
-    maxlength:6,
+    maxlength:'',
     textType:'password',
-    reg:/^\s+$/
+    reg:/$/
 }]
 export default json
