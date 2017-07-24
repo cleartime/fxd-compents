@@ -96,7 +96,8 @@
                         return t.type===this.inputType
 
                     })[0];
-
+                    console.log(this.regObj)
+                    console.log(this.regObj.textType)
                     this.$refs.dom.setAttribute('type',this.regObj.textType)//设置类型默认为text
 
                     this.myMaxlength = this.regObj.maxlength//强制设置类型长度
