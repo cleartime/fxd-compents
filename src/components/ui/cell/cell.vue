@@ -42,7 +42,7 @@
       outline: none;
       flex:1 auto;
       font-size: .32rem;
-      padding:0 .15rem;
+      padding:0 .3rem;
       color: #00aaee;
     }
     &.imgText .imgText, &.all .imgText{//图片样式

@@ -31,5 +31,11 @@ const json = [{
     maxlength:6,
     textType:'text',
     reg:/^\d{0,6}$/
+},{
+    type:'password',
+    name:'密码',
+    maxlength:6,
+    textType:'password',
+    reg:/^\s+$/
 }]
 export default json

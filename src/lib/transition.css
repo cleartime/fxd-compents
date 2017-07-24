@@ -1,0 +1,116 @@
+/**浅入浅出**/
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+
+/**从下往上**/
+.picker-enter-active, .picker-leave-active {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transition: all .3s;
+}
+.picker-enter, .picker-leave-active {
+  opacity: 0;
+  transform: translateY(5.2rem);
+}
+
+/**从下往上**/
+.bouncelnUp-enter-active, .bouncelnUp-leave-active {
+  transition: all ease-in-out .5s;
+  bottom:0
+}
+.bouncelnUp-enter, .bouncelnUp-leave-active {
+  opacity: 0;
+  transform: translateY(221px);
+}
+
+/**从左往右**/
+.bouncelnRight-enter-active, .bouncelnRight-leave-active {
+  transition: all .5s;
+}
+.bouncelnRight-enter, .bouncelnRight-leave-active {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+/**从右往左**/
+.bouncelnLeft-enter-active, .bouncelnLeft-leave-active {
+  transition: all .5s;
+}
+.bouncelnLeft-enter, .bouncelnLeft-leave-active {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/**放大1.5倍**/
+.pulse-enter-active, .pulse-leave-active {
+  transition: all .5s;
+}
+.pulse-enter, .pulse-leave-active {
+  opacity: 0;
+  transform: scale(1.5);
+}
+
+
+/**从小到大**/
+.smallBig-enter-active, .smallBig-leave-active {
+  transition: all .2s;
+}
+.smallBig-enter, .smallBig-leave-active {
+  opacity: 0;
+  transform: scale(0);
+}
+
+
+
+/**从小到大**/
+.move-enter-active, .move-leave-active {
+  transition: all 0.2s linear
+}
+.move-enter, .move-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0)
+}
+
+
+.slide-right-enter-active, .slide-left-enter-active {
+  transition: all .5s cubic-bezier(.36, .66, .04, 1);
+}
+.slide-right-leave-active, .slide-left-leave-active {
+  transition: all .5s cubic-bezier(.36, .66, .04, 1);
+}
+
+
+.slide-right-enter {
+  opacity: 1;
+  transform: translate3d(100%, 0, 0)
+}
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+  z-index: 10;
+}
+.slide-left-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0)
+}
+.slide-left-leave-active {
+  opacity: 1;
+  transform: translate3d(100%, 0, 0);
+  z-index: 10;
+}
+
+
+
+.router-slid-enter-active, .router-slid-leave-active {
+  transition: all .4s;
+}
+.router-slid-enter, .router-slid-leave-active {
+  transform: translate3d(2rem, 0, 0);
+  opacity: 0;
+}
