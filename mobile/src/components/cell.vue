@@ -1,5 +1,6 @@
 <template>
     <div class="fxd-cell">
+
        <fxd-cell :placeholder="item.placeholder"></fxd-cell>
 
         <fxd-cell :placeholder="item.placeholder1" readonly></fxd-cell>
