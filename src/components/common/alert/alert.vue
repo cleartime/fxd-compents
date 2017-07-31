@@ -94,22 +94,9 @@
             },0)
         },
         methods: {
-            random(){
-                let num = Math.floor(Math.random()*10);
-                return num>4?this.random():num
-            },
             handleAction(type){
-                if(this.yes === '欣然接受'){
-                    this.visible = false
-                }
-                let sha = ['傻是取消不了的','你就四傻','系统判定你四傻','别挣扎了你就四傻','傻了吧']
+                this.visible = false
                 this.callback(type);
-                if(!type){
-                    this.no = sha[this.random()];
-                    return
-                }
-                this.content = '承认了自己很傻了吧= =';
-                this.yes = '欣然接受';
             },
         }
     }
