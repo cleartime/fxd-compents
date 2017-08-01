@@ -10,7 +10,7 @@ import CellPicker from './components/ui/cellPicker/cellPicker.vue';
 import RadioTip from './components/ui/radioTip/radioTip.vue';
 import Header from './components/ui/header/header.vue';
 import MobileVerify from './components/feature/mobileVerify/mobileVerify.vue';
-
+import SendCode from './components/feature/sendCode/sendCode.vue';
 
 const install = function(Vue) {
   if (install.installed) return;
@@ -26,6 +26,7 @@ const install = function(Vue) {
   Vue.component(RadioTip.name, RadioTip);
     Vue.component(Header.name, Header);
   Vue.component(MobileVerify.name, MobileVerify);
+  Vue.component(SendCode.name, SendCode);
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -46,5 +47,6 @@ module.exports = {
     CellPicker,
   RadioTip,
     Header,
-  MobileVerify
+  MobileVerify,
+  SendCode
 };

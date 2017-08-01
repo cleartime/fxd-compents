@@ -1,33 +1,34 @@
 <template>
   <div class="mobileVerify">
-    <cell v-model="item.mobile.val"
-          @input.native="e=>item.mobile.val=e.target.value"
+    <cell v-model="mobileVerifyItem.mobile.val"
+          @input.native="e=>mobileVerifyItem.mobile.val=e.target.value"
           ref="mobile"
           type="imgText"
           inputType="mobile"
           @verify_cb="verify_cb"
     >
-      <img :src="item.mobile.icon" alt="" slot="imgText">
+      <img :src="mobileVerifyItem.mobile.icon" alt="" slot="imgText">
     </cell>
-    <cell v-model="item.imgCode.val"
-          @input.native="e=>item.imgCode.val=e.target.value"
+    <slot></slot>
+    <cell v-model="mobileVerifyItem.imgCode.val"
+          @input.native="e=>mobileVerifyItem.imgCode.val=e.target.value"
           ref="codeImg"
           type="all"
           inputType="imgCode"
           @verify_cb="verify_cb"
           v-if="type==='imgCode'"
           @click.native="change_pic">
-      <img :src="item.imgCode.icon" alt="" slot="imgText">
-      <img :src="item.imgCode.iconUrl" alt="" slot="btnText">
+      <img :src="mobileVerifyItem.imgCode.icon" alt="" slot="imgText">
+      <img :src="mobileVerifyItem.imgCode.iconUrl" alt="" slot="btnText">
     </cell>
-    <cell v-model="item.code.val"
-          @input.native="e=>item.code.val=e.target.value"
+    <cell v-model="mobileVerifyItem.code.val"
+          @input.native="e=>mobileVerifyItem.code.val=e.target.value"
           type="all"
           @verify_cb="verify_cb"
           inputType="code"
     >
       <img
-              :src="item.code.icon"
+              :src="mobileVerifyItem.code.icon"
               alt="" slot="imgText">
       <btn slot="btnText"
            @click.native="send_code"
@@ -62,7 +63,7 @@
             }
         },
         computed: {
-            item:{
+            mobileVerifyItem:{
                 get: function () {
                     const { mobile, imgCode, code } = this.data;
                     try{

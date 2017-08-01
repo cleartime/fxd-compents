@@ -26,7 +26,6 @@ export const verify = {
          */
         required(children){
             this.childrenList = !!children ? [...children] : this.childrenTrulyList; //过滤之后的数组
-
             return new Promise( (resolve )=> { // 只返回验证成功不返回验证失败，只许成功不许失败
                 let i=0;
                 do{
@@ -37,7 +36,6 @@ export const verify = {
                         break
                     }
                     i++;
-
                     if(this.requiredChildrenList.length>=this.childrenList.length){ // 都验证完成了才返回成功
                         resolve()
                     }

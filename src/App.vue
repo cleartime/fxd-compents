@@ -14,7 +14,7 @@
     <!--<div @click="submit">提交</div>-->
     <!--<fmask></fmask>-->
     <!--<fxd-button @click.native="submit">确定</fxd-button>-->
-    <!--<cell v-model="type" @input.native="e=>type=e.target.value" type="mobile" :verify="false"></cell>-->
+  
         <!--<mobileVerify-->
                       <!--:data="item"-->
                       <!--@mobile_verify_change_pic_cb="mobile_verify_change_pic_cb"-->
@@ -24,7 +24,14 @@
     <!--<cellPicker :data="list1" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
       <!--<picker :data="list" valueKey="desc_"></picker>-->
       <!--<picker :data="list2"></picker>-->
-    <cell inputType="password"></cell>
+    <!-- <cell v-model="type" @input.native="e=>type=e.target.value" type="mobile" :verify="false"></cell> -->
+    <cell  v-model="item.mobile.val" inputType="mobile" ref='abc'></cell>
+    <sendCode 
+    v-model='item.mobile.val'
+    type = 'btnText'
+    verifyCellName = 'abc'
+    >
+    </sendCode>
   </div>
 </template>
 
@@ -49,6 +56,7 @@ import header from './components/ui/header/header.vue'
 
 import {bus} from './until/evenbus'
 import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
+import sendCode from './components/feature/sendCode/sendCode.vue'
   export default {
     name: 'app',
     data() {
@@ -146,7 +154,8 @@ import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
         mobileVerify,
         picker,
         'fxd-header':header,
-        'fxd-button':button
+        'fxd-button':button,
+        sendCode
     },
     mounted() {
     },
