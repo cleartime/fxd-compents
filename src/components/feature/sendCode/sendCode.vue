@@ -31,9 +31,11 @@
             }
         },
         computed: {
-            sendCodeItem(){
-                return this.value
-            }
+           sendCodeItem:{
+                get: function () {
+                    return this.value
+                },
+            },
         },
         props:['type','value','verifyCellName'],
         components: {
