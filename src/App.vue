@@ -34,7 +34,7 @@
     >
     </sendCode> -->
        <!-- <addPicker :data="addlist" @cell_picker_submit_cb="cell_picker_submit_cb"></addPicker> -->
-       <!-- <cell  v-model="item.mobile.val" inputType="mobile" ref='abc' :readonly='ab'></cell> -->
+       <cell  v-model="item.mobile.val" inputType="mobile"  ref='abc'></cell>
   </div>
 </template>
 
@@ -65,6 +65,7 @@ import sendCode from './components/feature/sendCode/sendCode.vue'
     name: 'app',
     data() {
       return {
+        ab:true,
           msg:'确定要退出么',
           placeholder:'请输入电话号码',
           type:'sfsdfds',
@@ -138,7 +139,7 @@ import sendCode from './components/feature/sendCode/sendCode.vue'
           item:{
               mobile:{
 //                  icon:require('./public/img/mobile.png'),
-                  val:'12',
+                  val:'',
               },
               imgCode:{
 //                  icon:require('./public/img/code.png'),
@@ -167,9 +168,6 @@ import sendCode from './components/feature/sendCode/sendCode.vue'
         addPicker
     },
     mounted() {
-      setTimeout(()=>{
-        this.item.mobile.val = 1232
-      },1000)
     },
     methods: {
         submit(){

@@ -9,7 +9,7 @@
       </slot>
     </div>
       <input
-              :readonly="readonly"
+              :readonly="myReadonly"
               :placeholder="myPlaceholder"
               type="text"
               class="input"
@@ -112,7 +112,7 @@
 
                     this.myMaxlength = this.regObj.maxlength//强制设置类型长度
 
-                    this.myPlaceholder = `请输入${this.regObj.name}`;
+                    this.myPlaceholder = this.myPlaceholder || `请输入${this.regObj.name}`;
 
                     this.max_length();
                 }
@@ -128,7 +128,7 @@
                 }
             },
             verify_reg(){//验证正则表达式
-                if( !!this.readonly ){
+                if( !!this.myReadonly){
                   return false
                 }
                 this.myError = false
@@ -162,6 +162,18 @@
             }
         },
         watch:{
+            error(val){
+              this.myError = val;
+            },
+            maxlength(val){
+              this.myMaxlength = val;
+            },
+            placeholder(val){
+              this.myPlaceholder = val;
+            },
+            readonly(val){
+              this.myReadonly = val;
+            },
             value(val){
               this.myValue = val;
             },
