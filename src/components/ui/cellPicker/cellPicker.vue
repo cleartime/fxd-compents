@@ -2,7 +2,7 @@
     <div>
         <div class="cellSwiper" @click="handleChange">
             <span class="swiper-right placeholder" v-if="showPlaceholder">{{data.placeholder}}</span>
-            <span class="swiper-right" v-if="!showPlaceholder">{{localValue}}</span>
+            <span class="swiper-right" v-if="!showPlaceholder">{{myLocalValue}}</span>
             <span class="swiper-left" :class="[visible?'act':'']"></span>
         </div>
         <picker 
@@ -70,13 +70,14 @@
             data: {},
             valueKey:'',
             defaultIndex: '',
+            defaultValue:'',
         },
         data(){
             return{
                 myDefaultIndex: this.defaultIndex,
                 showPlaceholder:true, //picker有数据的时候关闭提示语
                 visible: false, //子组件开关
-                localValue:'', //picker切换的当前值
+                myLocalValue: this.defaultValue, //picker切换的当前值
                 list:this.data
             }
         },
@@ -84,6 +85,9 @@
             picker,
         },
         mounted() {
+            if(!!this.defaultValue){
+                this.showPlaceholder = false;
+            }
         },
         methods:{
             /**
@@ -98,7 +102,7 @@
              */
             picker_change_cb(data){
                 this.showPlaceholder = false;
-                this.localValue =  data.values[0].desc_;
+                this.myLocalValue =  data.values[0].desc_;
             },
             /**
              * picker取消的时候还原Placeholder提示语
@@ -117,6 +121,10 @@
         watch:{
             defaultIndex(val) {
                 this.myDefaultIndex = val;
+            },
+            defaultValue(val) {
+                this.showPlaceholder = false;
+                this.myLocalValue = val;
             },
             data(val){
               this.list = val;
