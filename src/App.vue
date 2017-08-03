@@ -34,7 +34,8 @@
     >
     </sendCode> -->
        <!-- <addPicker :data="addlist" @cell_picker_submit_cb="cell_picker_submit_cb"></addPicker> -->
-       <cell  v-model="item.mobile.val" inputType="mobile"  ref='abc'></cell>
+       <!-- <cell  v-model="item.mobile.val" inputType="mobile"  ref='abc'></cell> -->
+         <cellPicker  valueKey="desc_" :data="list" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>
   </div>
 </template>
 

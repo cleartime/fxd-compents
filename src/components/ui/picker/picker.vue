@@ -187,7 +187,10 @@
     import { Picker } from 'mint-ui';
     export default{
         name: 'fxd-picker',
-        props:['data','valueKey'],
+        props:{
+            data:{},
+            valueKey:''
+        },
         data(){
             return{
                 value:null, // 返回给父组件的值
@@ -202,20 +205,19 @@
         },
         mounted() {
             this.visible = !this.visible // 初始化打开picker
-            this.slots = this.data.values
         },
         methods:{
             /**
              * 取消的事件
              */
-            cancel(){
+            cancel() {
               this.visible = !this.visible;
               this.$emit('picker_cancel_cb');
             },
             /**
              * 确定的事件返回当前选中的一个数组对象
              */
-            submit(){
+            submit() {
                 this.visible = !this.visible;
                 this.$emit('picker_submit_cb',this.value);
             },
@@ -232,10 +234,15 @@
              * picker动画离开的时候同时关闭mask
              * 如果父组件是cellPicker同时也关闭他
              */
-            afterLeave(){
+            afterLeave() {
                 this.maskVisible = !this.maskVisible;
                 try{this.$parent.visible = false}catch (e){}
             }
-        }
+        },
+        watch:{
+            data(val){
+              this.slots = val;
+            },
+        },
     }
 </script>

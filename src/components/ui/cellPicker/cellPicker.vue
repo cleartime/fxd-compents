@@ -59,7 +59,10 @@
     import picker from '../picker/picker.vue'
     export default{
         name: 'fxd-cellPicker',
-        props:['data','valueKey'],
+        props:{
+            data: {},
+            valueKey:''
+        },
         data(){
             return{
                 showPlaceholder:true, //picker有数据的时候关闭提示语
@@ -70,6 +73,8 @@
         },
         components: {
             picker,
+        },
+        mounted() {
         },
         methods:{
             /**
@@ -84,7 +89,7 @@
              */
             picker_change_cb(data){
                 this.showPlaceholder = false;
-                this.localValue =  data[0].desc_;
+                this.localValue =  data.values[0].desc_;
             },
             /**
              * picker取消的时候还原Placeholder提示语
@@ -99,6 +104,11 @@
             picker_submit_cb(data){
                 this.$emit('cell_picker_submit_cb',data);
             }
-        }
+        },
+        watch:{
+            data(val){
+              this.list = val;
+            },
+        },
     }
 </script>
