@@ -93,6 +93,7 @@ import sendCode from './components/feature/sendCode/sendCode.vue'
               }]
           },
           list:{
+              defaultIndex:1,
               placeholder:'请选择借款用途', //提示语
               values: [{
                   "id_": "9c7c91c7b6c7436691bc2c89c65d953a",

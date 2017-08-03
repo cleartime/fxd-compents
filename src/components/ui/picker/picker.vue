@@ -7,7 +7,7 @@
                 <h1>{{data.placeholder}}</h1>
                 <button @click.stop.prevent="submit">确定</button>
             </header>
-            <Picker :slots="slots" :itemHeight="72" @change="onValuesChange" :value-key="valueKey"></Picker>
+            <Picker :defaultIndex="myDefaultIndex" :slots="slots" :itemHeight="72" @change="onValuesChange" :value-key="valueKey"></Picker>
         </div>
         </transition>
     </Fxd-mask>
@@ -189,10 +189,12 @@
         name: 'fxd-picker',
         props:{
             data:{},
-            valueKey:''
+            valueKey:'',
+            defaultIndex: 0,
         },
         data(){
             return{
+                myDefaultIndex: this.defaultIndex,//默认值
                 value:null, // 返回给父组件的值
                 maskVisible:true, // mask开关
                 visible: false, // picker开关
@@ -240,8 +242,11 @@
             }
         },
         watch:{
+            defaultIndex(val){
+                this.myDefaultIndex = val;
+            },
             data(val){
-              this.slots = val;
+                this.slots = val;
             },
         },
     }

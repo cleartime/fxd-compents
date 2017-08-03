@@ -5,7 +5,14 @@
             <span class="swiper-right" v-if="!showPlaceholder">{{localValue}}</span>
             <span class="swiper-left" :class="[visible?'act':'']"></span>
         </div>
-        <picker v-if="visible" :valueKey="valueKey" :data="list" @picker_cancel_cb="picker_cancel_cb"  @picker_submit_cb="picker_submit_cb" @picker_change_cb="picker_change_cb"></picker>
+        <picker 
+        :defaultIndex="myDefaultIndex"
+        v-if="visible" 
+        :valueKey="valueKey" 
+        :data="list"
+        @picker_cancel_cb="picker_cancel_cb" 
+        @picker_submit_cb="picker_submit_cb" 
+        @picker_change_cb="picker_change_cb"></picker>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -61,10 +68,12 @@
         name: 'fxd-cellPicker',
         props:{
             data: {},
-            valueKey:''
+            valueKey:'',
+            defaultIndex: '',
         },
         data(){
             return{
+                myDefaultIndex: this.defaultIndex,
                 showPlaceholder:true, //picker有数据的时候关闭提示语
                 visible: false, //子组件开关
                 localValue:'', //picker切换的当前值
@@ -106,6 +115,9 @@
             }
         },
         watch:{
+            defaultIndex(val) {
+                this.myDefaultIndex = val;
+            },
             data(val){
               this.list = val;
             },
