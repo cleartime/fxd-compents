@@ -109,6 +109,7 @@
              */
             picker_cancel_cb(){
                 this.showPlaceholder = true;
+                this.$emit('cell_picker_cancel_cb');
             },
             /**
              * picker点击确定的事件
