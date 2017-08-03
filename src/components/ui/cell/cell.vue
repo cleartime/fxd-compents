@@ -65,6 +65,9 @@
     &[error]{//错误样式
       border:1px solid red
     }
+    &[readonly]{
+      pointer-events: none
+    }
   }
 </style>
 <script type="text/ecmascript-6">
@@ -125,6 +128,9 @@
                 }
             },
             verify_reg(){//验证正则表达式
+                if( !!this.readonly ){
+                  return false
+                }
                 this.myError = false
                 const set_dis_focus = ()=>{
                     this.myError = true
