@@ -10,7 +10,7 @@ const json = [{
 },{
     type:'idCard',
     name:'身份证号码',
-    maxlength:15,
+    maxlength:18,
     textType:'number',
     reg:/^([\u4E00-\uFA29]|[\uE7C7-\uE7F3])*$/
 },{
