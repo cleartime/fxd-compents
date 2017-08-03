@@ -83,7 +83,16 @@
                 myVerify:typeof this.verify==='boolean'?false:true//判断要不要进行验证，默认是要的
             }
         },
-        props:['inputType','type','value','placeholder','maxlength','error','verify','readonly'],
+        props:{
+          inputType: '',
+          type: '',
+          placeholder: '',
+          maxlength: '',
+          error: '',
+          verify: '',
+          readonly: '',
+          value: {}
+        },
         mounted() {
             this.init();
         },
@@ -147,7 +156,10 @@
             }
         },
         watch:{
-            myValue() {//控制输入长度
+            value(val){
+              this.myValue = val;
+            },
+            myValue(val) {//控制输入长度
                 this.myVerify&&this.max_length();
             }
         },

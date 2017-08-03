@@ -202,9 +202,7 @@
         },
         mounted() {
             this.visible = !this.visible // 初始化打开picker
-            if(!this.valueKey){
-                this.slots = this.data.values
-            }
+            this.slots = this.data.values
         },
         methods:{
             /**
@@ -227,11 +225,8 @@
              * @param values
              */
             onValuesChange(picker, values) {
-                if (values[0] > values[1]) {
-                    picker.setSlotValue(1, values[0]);
-                }
                 this.value = values;
-                this.$emit('picker_change_cb',values);
+                this.$emit('picker_change_cb',{picker,values});
             },
             /**
              * picker动画离开的时候同时关闭mask
