@@ -33,7 +33,7 @@
     verifyCellName = "abc"
     >
     </sendCode> -->
-       <addPicker :defaultValueArr='defaultValueArr' :data="add" @addPicker_submit_cb="cell_picker_submit_cb"></addPicker>
+       <addPicker :defaultValueArr='defaultValueArr' v-model="add" @addPicker_submit_cb="cell_picker_submit_cb"></addPicker>
        <!-- <cell  v-model="item.mobile.val" inputType="mobile"  ref='abc'></cell> -->
          <!-- <cellPicker  valueKey="desc_" :data="list" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker> -->
   </div>
@@ -172,10 +172,21 @@ import sendCode from './components/feature/sendCode/sendCode.vue'
         addPicker
     },
     mounted() {
-      this.add = [];
-      setTimeout( ()=> {
-        this.add = this.addlist
-      },1000)
+      let _this = this;
+      // this.add = [];
+      // setTimeout( ()=> {
+      //   this.add = this.addlist
+      // },1000)
+
+      fetch('http://h5.test.fxds/fxd-esb/esb/getRegionList/getAllRegionByOrderList.jhtml?juid=827e946872644580886e0e409667b3ea&827e946872644580886e0e409667b3eatoken=5df89d317218460fb7bcb3bb940da46a').then(function(response) {
+          return response.json();
+        }).then(function(data) {
+           _this.add = {
+            values:data.result,
+           };
+        }).catch(function(e) {
+          console.log("Oops, error");
+        });
     },
     methods: {
         submit(){

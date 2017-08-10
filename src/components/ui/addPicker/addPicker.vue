@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="cellSwiper" @click="handleChange">
-            <span class="swiper-right placeholder" v-if="showPlaceholder">{{data.placeholder}}</span>
+            <span class="swiper-right placeholder" v-if="showPlaceholder">{{value.placeholder}}</span>
             <p class="swiper-right text" v-if="!showPlaceholder"><span v-for='i in myLocalValueArr'>{{i.name || i}}</span></p>
             <span class="swiper-left" :class="[visible?'act':'']"></span>
         </div>
@@ -10,7 +10,7 @@
             <div class="picker-outline" v-if="visible" @click.stop.prevent>
                 <header class="picker-outline-header">
                     <button @click.stop.prevent="cancel">取消</button>
-                    <h1>{{data.placeholder}}</h1>
+                    <h1>{{value.placeholder}}</h1>
                     <button @click.stop.prevent="submit">确定</button>
                 </header>
                 <Picker :slots="addressSlots"  :itemHeight="72"  :visible-item-count="5" value-key="name" @change="onAddressChange"></Picker>
@@ -19,6 +19,131 @@
         </Fxd-mask>
     </div>
 </template>
+
+<script>
+    import mask from '../../common/mask/mask.vue';
+    import { Picker } from 'mint-ui';
+    export default {
+        name: 'fxd-add-picker',
+        props: {
+            value: {},
+            data: {},
+            defaultValueArr: ''
+        },
+        data() {
+            return {
+                showPlaceholder: true, //picker有数据的时候关闭提示语
+                myLocalValueArr: [], //picker切换的当前值
+                myDefaultIndex: this.defaultIndex,//默认值
+                // value: null, // 返回给父组件的值
+                maskVisible: false, // mask开关
+                visible: false, // picker开关
+                slots: [this.value], // picker数据
+                addressSlots: [
+                  {
+                    flex: 1,
+                    values: this.value.values,
+                    className: 'slot1',
+                    textAlign: 'center'
+                  }, 
+                  {
+                    flex: 1,
+                    values:  [],
+                    className: 'slot2',
+                    textAlign: 'center'
+                  },
+                  {
+                    flex: 1,
+                    values: [],
+                    className: 'slot3',
+                    textAlign: 'center'
+                  }
+                ],
+            }
+        },
+        components: {
+            Picker,
+            'Fxd-mask':mask,
+        },
+        mounted() {
+            if(this.defaultValueArr){
+                this.showPlaceholder = false;
+                this.myLocalValueArr = this.defaultValueArr;
+            }
+            try{
+                this.addressSlots[1].values = this.value.values[0].sub;
+                this.addressSlots[2].values = this.value.values[0].sub[0].sub;
+            }catch(e){}
+        },
+        methods: {
+            /**
+             * 选择框点击的事件
+             */
+            handleChange() {
+                this.maskVisible = !this.maskVisible;
+                this.visible = !this.visible
+            },
+            /**
+             * picker点击确定的事件
+             * @param data
+             */
+            picker_submit_cb() {
+                this.$emit('addPicker_submit_cb', this.myLocalValueArr);
+            },
+            onAddressChange(picker, values) {
+                this.showPlaceholder = false;
+                try {
+                    picker.setSlotValues(1, values[0].sub);
+                    picker.setSlotValues(2, values[1].sub);
+                    this.myLocalValueArr = [values[0], values[1], values[2]];
+                } catch (e) {}
+            },
+            /**
+             * 取消的事件
+             */
+            cancel() {
+                this.maskVisible = !this.maskVisible;
+                this.visible = !this.visible;
+                this.showPlaceholder = true;
+                this.$emit('addPicker_cancel_cb');
+            },
+            /**
+             * 确定的事件返回当前选中的一个数组对象
+             */
+            submit() {
+                this.visible = !this.visible;
+                this.$emit('addPicker_submit_cb', this.myLocalValueArr);
+            },
+            /**
+             * picker切换的事件返回当前选中的一个数组对象
+             * @param picker
+             * @param values
+             */
+            onValuesChange(picker, values) {
+                this.$emit('addPicker_change_cb',{picker,values});
+            },
+            /**
+             * picker动画离开的时候同时关闭mask
+             * 如果父组件是cellPicker同时也关闭他
+             */
+            afterLeave() {
+                this.maskVisible = !this.maskVisible;
+                try { this.$parent.visible = false } catch (e) {}
+            }
+        },
+        watch: {
+            value(val) {
+                console.log(val)
+                try {
+                    this.addressSlots[0].values = val.values;
+                    this.addressSlots[1].values = val.values[0].sub;
+                    this.addressSlots[2].values = val.values[0].sub[0].sub;
+                } catch (e) {}
+            },
+        },
+    }
+</script>
+
 <style lang="scss">
     .cellSwiper{
         font-size: .32rem;
@@ -239,125 +364,3 @@
     }
     /* picker-end */
 </style>
-<script>
-    import mask from '../../common/mask/mask.vue';
-    import { Picker } from 'mint-ui';
-    export default {
-        name: 'fxd-picker',
-        props: {
-            data: {},
-            defaultValueArr: ''
-        },
-        data() {
-            return {
-                showPlaceholder: true, //picker有数据的时候关闭提示语
-                myLocalValueArr: [], //picker切换的当前值
-                myDefaultIndex: this.defaultIndex,//默认值
-                value: null, // 返回给父组件的值
-                maskVisible: false, // mask开关
-                visible: false, // picker开关
-                slots: [this.data], // picker数据
-                addressSlots: [
-                  {
-                    flex: 1,
-                    values: this.data.values,
-                    className: 'slot1',
-                    textAlign: 'center'
-                  }, 
-                  {
-                    flex: 1,
-                    values:  [],
-                    className: 'slot2',
-                    textAlign: 'center'
-                  },
-                  {
-                    flex: 1,
-                    values: [],
-                    className: 'slot3',
-                    textAlign: 'center'
-                  }
-                ],
-            }
-        },
-        components: {
-            Picker,
-            'Fxd-mask':mask,
-        },
-        mounted() {
-            if(this.defaultValueArr){
-                this.showPlaceholder = false;
-                this.myLocalValueArr = this.defaultValueArr;
-            }
-            try{
-                this.addressSlots[1].values = this.data.values[0].sub;
-                this.addressSlots[2].values = this.data.values[0].sub[0].sub;
-            }catch(e){}
-        },
-        methods: {
-            /**
-             * 选择框点击的事件
-             */
-            handleChange() {
-                this.maskVisible = !this.maskVisible;
-                this.visible = !this.visible
-            },
-            /**
-             * picker点击确定的事件
-             * @param data
-             */
-            picker_submit_cb() {
-                this.$emit('addPicker_submit_cb', this.myLocalValueArr);
-            },
-            onAddressChange(picker, values) {
-                this.showPlaceholder = false;
-                try {
-                    picker.setSlotValues(1, values[0].sub);
-                    picker.setSlotValues(2, values[1].sub);
-                    this.myLocalValueArr = [values[0], values[1], values[2]];
-                } catch (e) {}
-            },
-            /**
-             * 取消的事件
-             */
-            cancel() {
-                this.maskVisible = !this.maskVisible;
-                this.visible = !this.visible;
-                this.showPlaceholder = true;
-                this.$emit('addPicker_cancel_cb');
-            },
-            /**
-             * 确定的事件返回当前选中的一个数组对象
-             */
-            submit() {
-                this.visible = !this.visible;
-                this.$emit('addPicker_submit_cb', this.myLocalValueArr);
-            },
-            /**
-             * picker切换的事件返回当前选中的一个数组对象
-             * @param picker
-             * @param values
-             */
-            onValuesChange(picker, values) {
-                this.value = values;
-                this.$emit('addPicker_change_cb',{picker,values});
-            },
-            /**
-             * picker动画离开的时候同时关闭mask
-             * 如果父组件是cellPicker同时也关闭他
-             */
-            afterLeave() {
-                this.maskVisible = !this.maskVisible;
-                try{ this.$parent.visible = false }catch (e){}
-            }
-        },
-        watch: {
-            data(val) {
-                try{
-                    this.addressSlots[0].values = val.values;
-                    this.addressSlots[1].values = val.values[0].sub;
-                    this.addressSlots[2].values = val.values[0].sub[0].sub;
-                }catch(e){}
-            },
-        },
-    }
-</script>
