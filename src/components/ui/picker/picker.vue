@@ -185,18 +185,18 @@
 <script>
     import mask from '../../common/mask/mask.vue';
     import { Picker } from 'mint-ui';
-    export default{
+    export default {
         name: 'fxd-picker',
-        props:{
-            data:{},
-            valueKey:'',
+        props: {
+            data: {},
+            valueKey: '',
             defaultIndex: 0,
         },
-        data(){
-            return{
+        data() {
+            return {
                 myDefaultIndex: this.defaultIndex,//默认值
-                value:null, // 返回给父组件的值
-                maskVisible:true, // mask开关
+                value: null, // 返回给父组件的值
+                maskVisible: true, // mask开关
                 visible: false, // picker开关
                 slots: [this.data] // picker数据
             }
@@ -241,11 +241,11 @@
                 try{this.$parent.visible = false}catch (e){}
             }
         },
-        watch:{
-            defaultIndex(val){
+        watch: {
+            defaultIndex(val) {
                 this.myDefaultIndex = val;
             },
-            data(val){
+            data(val) {
                 this.slots = val;
             },
         },

@@ -2,13 +2,24 @@
     <div>
         <div class="cellSwiper" @click="handleChange">
             <span class="swiper-right placeholder" v-if="showPlaceholder">{{data.placeholder}}</span>
-            <span class="swiper-right" v-if="!showPlaceholder">{{province_name}}{{city_name}}{{county_name}}</span>
+            <p class="swiper-right text" v-if="!showPlaceholder"><span v-for='i in myLocalValueArr'>{{i.name || i}}</span></p>
             <span class="swiper-left" :class="[visible?'act':'']"></span>
         </div>
-        <picker v-if="visible"  :data="flfterList" @picker_cancel_cb="picker_cancel_cb" valueKey="name" @picker_submit_cb="picker_submit_cb" @picker_change_cb="picker_change_cb"></picker>
+        <Fxd-mask v-if="maskVisible" @click.native="submit">
+            <transition name="picker" v-on:after-leave="afterLeave">
+            <div class="picker-outline" v-if="visible" @click.stop.prevent>
+                <header class="picker-outline-header">
+                    <button @click.stop.prevent="cancel">取消</button>
+                    <h1>{{data.placeholder}}</h1>
+                    <button @click.stop.prevent="submit">确定</button>
+                </header>
+                <Picker :slots="addressSlots"  :itemHeight="72"  :visible-item-count="5" value-key="name" @change="onAddressChange"></Picker>
+            </div>
+            </transition>
+        </Fxd-mask>
     </div>
 </template>
-<style lang="scss" scoped>
+<style lang="scss">
     .cellSwiper{
         font-size: .32rem;
         display: flex;
@@ -26,6 +37,12 @@
             padding-left: .3rem;
             &.placeholder{
                 color: #767d84;
+            }
+            &.text{
+                display: flex;
+                span{
+                    flex: 1
+                }
             }
         }
         .swiper-left{
@@ -53,154 +70,294 @@
             }
         }
     }
+    .picker-outline{
+        position: fixed;
+        z-index: 101;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5.2rem;
+        background: #cdd5da;
+        .picker-outline-header{
+            margin-bottom:.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: .32rem;
+            background-color: #f7f7f8;
+            border-top:1px solid #a8abb0;
+            border-bottom:1px solid #a8abb0;
+            height: .88rem;
+            h1{
+                color: #5f646e;
+            }
+            button{
+                color: #0894ec;
+                font-size: .3rem;
+                border:none;
+                background: none;
+            }
+        }
+    }
+    /* picker-start */
+    .picker {
+        overflow: hidden;
+    }
+    .picker-toolbar {
+        height: .4rem;
+    }
+    .picker-items {
+        -webkit-mask-box-image: linear-gradient(to top,transparent,transparent 5%,#fff 20%,#fff 80%,transparent 95%,transparent);
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding: 0;
+        text-align: right;
+        font-size: .48rem;
+        position: relative;
+    }
+    .picker-center-highlight {
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        top: 50%;
+        margin-top: -.36rem;
+        pointer-events: none
+    }
+    .picker-center-highlight:before, .picker-center-highlight:after {
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        background-color: #a8abb0;
+        display: block;
+        z-index: 15;
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+    }
+    .picker-center-highlight:before {
+        left: 0;
+        top: 0;
+        bottom: auto;
+        right: auto;
+    }
+    .picker-center-highlight:after {
+        left: 0;
+        bottom: 0;
+        right: auto;
+        top: auto;
+    }
+
+    .picker-slot {
+        font-size: .36rem;
+        overflow: hidden;
+        position: relative;
+        max-height: 100%
+    }
+    .picker-slot.picker-slot-left {
+        text-align: left;
+    }
+    .picker-slot.picker-slot-center {
+        text-align: center;
+    }
+    .picker-slot.picker-slot-right {
+        text-align: right;
+    }
+    .picker-slot.picker-slot-divider {
+        color: #000;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+    .picker-slot-wrapper {
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    .picker-slot-wrapper.dragging, .picker-slot-wrapper.dragging .picker-item {
+        -webkit-transition-duration: 0s;
+        transition-duration: 0s;
+    }
+    .picker-item {
+        height: .72rem;
+        line-height: .72rem;
+        padding: 0 .1rem;
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #707274;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    .picker-slot-absolute .picker-item {
+        position: absolute;
+    }
+    .picker-item.picker-item-far {
+        pointer-events: none
+    }
+    .picker-item.picker-selected {
+        color: #000;
+        -webkit-transform: translate3d(0, 0, 0) rotateX(0);
+        transform: translate3d(0, 0, 0) rotateX(0);
+    }
+    .picker-3d .picker-items {
+        overflow: hidden;
+        -webkit-perspective: 7rem;
+        perspective: 7rem;
+    }
+    .picker-3d .picker-item, .picker-3d .picker-slot, .picker-3d .picker-slot-wrapper {
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d
+    }
+    .picker-3d .picker-slot {
+        overflow: visible
+    }
+    .picker-3d .picker-item {
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out
+    }
+    /* picker-end */
 </style>
 <script>
-
-    import picker from '../picker/picker.vue'
-    export default{
-        name: 'fxd-cellPicker',
-        props:['data','valueKey'],
-        data(){
-            return{
-                showPlaceholder:true, //picker有数据的时候关闭提示语
-                visible: false, //子组件开关
-                localValue: '', //picker切换的当前值
-                list: this.data,
-                province_name_Arr: [],
-                city_name_Arr: [],
-                county_name_Arr: [],
-                flfterList:{},
-                province_name:'',
-                city_name:'',
-                county_name:'',
-                default_city_name_Arr: [],
-                default_county_name_Arr: []
+    import mask from '../../common/mask/mask.vue';
+    import { Picker } from 'mint-ui';
+    export default {
+        name: 'fxd-picker',
+        props: {
+            data: {},
+            defaultValueArr: ''
+        },
+        data() {
+            return {
+                showPlaceholder: true, //picker有数据的时候关闭提示语
+                myLocalValueArr: [], //picker切换的当前值
+                myDefaultIndex: this.defaultIndex,//默认值
+                value: null, // 返回给父组件的值
+                maskVisible: false, // mask开关
+                visible: false, // picker开关
+                slots: [this.data], // picker数据
+                addressSlots: [
+                  {
+                    flex: 1,
+                    values: this.data.values,
+                    className: 'slot1',
+                    textAlign: 'center'
+                  }, 
+                  {
+                    flex: 1,
+                    values:  [],
+                    className: 'slot2',
+                    textAlign: 'center'
+                  },
+                  {
+                    flex: 1,
+                    values: [],
+                    className: 'slot3',
+                    textAlign: 'center'
+                  }
+                ],
             }
         },
         components: {
-            picker,
+            Picker,
+            'Fxd-mask':mask,
         },
         mounted() {
-            this.list.values.forEach((i,index)=>{
-                if(i.type==1){
-                    i.id = index;
-                    this.province_name_Arr.push({
-                        id:index,
-                        name:i.name
-                    });
-                    i.sub.forEach((j,index)=>{
-                        if(j.type==0){
-                            j.id = `c${index}`
-                            this.city_name_Arr.push({
-                                id: `c${index}`,
-                                pid: i.id,
-                                name: j.name
-                            })
-                            if(i.id==0){
-                                this.default_city_name_Arr.push({
-                                    id: `c${index}`,
-                                    pid: i.id,
-                                    name: j.name
-                                })
-                            }
-                            j.sub.forEach((h)=>{
-                                this.county_name_Arr.push({
-                                    pid: j.id,
-                                    name: h.name
-                                })
-                                if(j.id=='c0'){
-                                    this.default_county_name_Arr.push({
-                                        pid: j.id,
-                                        name: h.name
-                                    })
-                                }
-                            })
-                        }
-                    })
-                }
-            })
-            this.flfterList = {
-                placeholder: this.data.placeholder||'',
-                values:[{
-                flex: 1,
-                  values: this.province_name_Arr,
-                  className: 'slot1',
-                  textAlign: 'province'
-              }, {
-                flex: 1,
-                  values: this.default_city_name_Arr,
-                  className: 'city',
-                  className: 'center'
-              }, {
-                  flex: 1,
-                  values: this.default_county_name_Arr,
-                  className: 'county',
-                  textAlign: 'left'
-              }]
-            }
-        },
-        methods:{
-            handleChange(){
-                this.visible = !this.visible
-            },
-            /**
-             * 子组件picker切换的时候同步绑定到父组件中
-             * @param data
-             */
-            picker_change_cb(obj){
+            if(this.defaultValueArr){
                 this.showPlaceholder = false;
-                let { picker, values } = obj;
-                try{
-                    // if(values[0].id !== values[1].pid){
-                    //     for(let i=0,len=this.city_name_Arr.length;i<len;i++){
-                    //         if(this.city_name_Arr[i].pid==values[0].id){
-                    //             picker.setSlotValue(1, this.city_name_Arr[i]);
-                    //             break
-                    //         }
-                    //     }
-                    // }
-                    // this.getCitySlotValue(picker, values)
-                    // console.log(this.getCountySlotValue(values).length)
-                    // if(values[1].pid !== values[0].id){
-                    //     console.log(values[0])
-                    //     picker.setSlotValue(1, values[0]);
-                    // }
-                }catch(e){}
-            },
-            getCitySlotValue(picker, values){
-                if(values[0].id !== values[1].pid){
-                    for(let i=0,len=this.city_name_Arr.length;i<len;i++){
-                        if(this.city_name_Arr[i].pid==values[0].id){
-                            console.log(this.city_name_Arr[i])
-                            picker.setSlotValue(1, this.city_name_Arr[i]);
-                            break
-                        }
-                    }
-                }
-            },
-            getCountySlotValue(picker, values){
-                if(values[1].id !== values[2].pid){
-                    for(let i=0,len=this.county_name_Arr.length;i<len;i++){
-                        if(values[1].id == this.county_name_Arr[i].pid){
-                            picker.setSlotValue(2, this.county_name_Arr[i]);
-                            break
-                        }
-                    }
-                }
-            },
+                this.myLocalValueArr = this.defaultValueArr;
+            }
+            try{
+                this.addressSlots[1].values = this.data.values[0].sub;
+                this.addressSlots[2].values = this.data.values[0].sub[0].sub;
+            }catch(e){}
+        },
+        methods: {
             /**
-             * picker取消的时候还原Placeholder提示语
+             * 选择框点击的事件
              */
-            picker_cancel_cb(){
-                this.showPlaceholder = true;
+            handleChange() {
+                this.maskVisible = !this.maskVisible;
+                this.visible = !this.visible
             },
             /**
              * picker点击确定的事件
              * @param data
              */
-            picker_submit_cb(data){
-                this.$emit('cell_picker_submit_cb',data);
+            picker_submit_cb() {
+                this.$emit('addPicker_submit_cb', this.myLocalValueArr);
+            },
+            onAddressChange(picker, values) {
+                this.showPlaceholder = false;
+                try {
+                    picker.setSlotValues(1, values[0].sub);
+                    picker.setSlotValues(2, values[1].sub);
+                    this.myLocalValueArr = [values[0], values[1], values[2]];
+                } catch (e) {}
+            },
+            /**
+             * 取消的事件
+             */
+            cancel() {
+                this.maskVisible = !this.maskVisible;
+                this.visible = !this.visible;
+                this.showPlaceholder = true;
+                this.$emit('addPicker_cancel_cb');
+            },
+            /**
+             * 确定的事件返回当前选中的一个数组对象
+             */
+            submit() {
+                this.visible = !this.visible;
+                this.$emit('addPicker_submit_cb', this.myLocalValueArr);
+            },
+            /**
+             * picker切换的事件返回当前选中的一个数组对象
+             * @param picker
+             * @param values
+             */
+            onValuesChange(picker, values) {
+                this.value = values;
+                this.$emit('addPicker_change_cb',{picker,values});
+            },
+            /**
+             * picker动画离开的时候同时关闭mask
+             * 如果父组件是cellPicker同时也关闭他
+             */
+            afterLeave() {
+                this.maskVisible = !this.maskVisible;
+                try{ this.$parent.visible = false }catch (e){}
             }
-        }
+        },
+        watch: {
+            data(val) {
+                try{
+                    this.addressSlots[0].values = val.values;
+                    this.addressSlots[1].values = val.values[0].sub;
+                    this.addressSlots[2].values = val.values[0].sub[0].sub;
+                }catch(e){}
+            },
+        },
     }
 </script>

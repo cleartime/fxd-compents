@@ -62,7 +62,6 @@
     }
 </style>
 <script>
-
     import picker from '../picker/picker.vue'
     export default{
         name: 'fxd-cellPicker',
