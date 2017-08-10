@@ -7,7 +7,7 @@ import Mask from './components/common/mask/mask.vue';
 import Cell from './components/ui/cell/cell.vue';
 import Picker from './components/ui/picker/picker.vue';
 import CellPicker from './components/ui/cellPicker/cellPicker.vue';
-import AddPicker from './components/ui/cellPicker/cellPicker.vue';
+import AddPicker from './components/ui/addPicker/addPicker.vue';
 import RadioTip from './components/ui/radioTip/radioTip.vue';
 import Header from './components/ui/header/header.vue';
 import MobileVerify from './components/feature/mobileVerify/mobileVerify.vue';
