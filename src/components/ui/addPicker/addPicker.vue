@@ -164,6 +164,7 @@
                 color: #767d84;
             }
             &.text{
+                text-align: center;
                 display: flex;
                 span{
                     flex: 1
