@@ -4,6 +4,7 @@ import App from './App'
 import routers from './routers';
 import FxdUi from '../../build/';
 for(let i of Object.keys(FxdUi).filter((t,i)=>i>1)){
+	console.log(i)
     Vue.component('fxd'+i, FxdUi[i])
 }
 

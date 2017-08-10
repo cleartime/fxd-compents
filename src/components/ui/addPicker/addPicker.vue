@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="cellSwiper" @click="handleChange">
-            <span class="swiper-right placeholder" v-if="showPlaceholder">{{value.placeholder}}</span>
+            <span class="swiper-right placeholder" v-if="showPlaceholder">{{data.placeholder}}</span>
             <p class="swiper-right text" v-if="!showPlaceholder"><span v-for='i in myLocalValueArr'>{{i.name || i}}</span></p>
             <span class="swiper-left" :class="[visible?'act':'']"></span>
         </div>
@@ -10,7 +10,7 @@
             <div class="picker-outline" v-if="visible" @click.stop.prevent>
                 <header class="picker-outline-header">
                     <button @click.stop.prevent="cancel">取消</button>
-                    <h1>{{value.placeholder}}</h1>
+                    <h1>{{data.placeholder}}</h1>
                     <button @click.stop.prevent="submit">确定</button>
                 </header>
                 <Picker :slots="addressSlots"  :itemHeight="72"  :visible-item-count="5" value-key="name" @change="onAddressChange"></Picker>
@@ -26,7 +26,6 @@
     export default {
         name: 'fxd-add-picker',
         props: {
-            value: {},
             data: {},
             defaultValueArr: ''
         },
@@ -38,11 +37,10 @@
                 // value: null, // 返回给父组件的值
                 maskVisible: false, // mask开关
                 visible: false, // picker开关
-                slots: [this.value], // picker数据
                 addressSlots: [
                   {
                     flex: 1,
-                    values: this.value.values,
+                    values: this.data.values,
                     className: 'slot1',
                     textAlign: 'center'
                   }, 
@@ -71,8 +69,8 @@
                 this.myLocalValueArr = this.defaultValueArr;
             }
             try{
-                this.addressSlots[1].values = this.value.values[0].sub;
-                this.addressSlots[2].values = this.value.values[0].sub[0].sub;
+                this.addressSlots[1].values = this.data.values[0].sub;
+                this.addressSlots[2].values = this.data.values[0].sub[0].sub;
             }catch(e){}
         },
         methods: {
@@ -132,8 +130,10 @@
             }
         },
         watch: {
-            value(val) {
-                console.log(val)
+            defaultValueArr(val) {
+                this.myLocalValueArr = val;
+            },
+            data(val) {
                 try {
                     this.addressSlots[0].values = val.values;
                     this.addressSlots[1].values = val.values[0].sub;
@@ -168,6 +168,13 @@
                 display: flex;
                 span{
                     flex: 1
+                }
+                span:first-child{
+                    text-align:left;
+                }
+                span:last-child{
+                    text-align:right;
+                    padding-right: .1rem;
                 }
             }
         }

@@ -37,7 +37,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 module.exports = {
   install,
-  version: '1.0.0',
+  version: '1.5.2',
     Actionsheet,
   Loading,
     Alert,

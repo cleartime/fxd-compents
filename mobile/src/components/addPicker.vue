@@ -1,67 +1,15 @@
 <template>
   <div>
-    <!--<alert :msg="msg"></alert>-->
-    <!--<toask :msg='msg'></toask>-->
-    <!--<fmask/>-->
-    <!--<fxd-header title="这是标题" @header_back_cb="header_back_cb"/>-->
-    <!--<actionsheet></actionsheet>-->
-    <!--<cell1cell :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message" @text_input_cb="val=>{item.message=cell1cell>&ndash;&gt;&ndash;&gt;-->
-    <!--<cell1cell :showIcon="true" :showCode="true" :iconUrl="icon" :placeholder='placeholder' :type="type" :model="item.message2" @text_input_cb="val=>{item.message2=cell1cell>&ndash;&gt;&ndash;&gt;-->
-    <!--<loading></loading>-->
-            <!--:data="item"-->
-            <!--@mobile_verify_img_cb="mobile_verify_img_cb"-->
-            <!--@mobile_verify_sendcode_cb="mobile_verify_sendcode_cbmobileVerify1rify>-->
-    <!--<div @click="submit">提交</div>-->
-    <!--<fmask></fmask>-->
-    <!-- <fxd-button @click.native="submit">确定</fxd-button> -->
-  
-        <!--<mobileVerify-->
-                      <!--:data="item"-->
-                      <!--@mobile_verify_change_pic_cb="mobile_verify_change_pic_cb"-->
-                      <!--@mobile_verify_send_code_cb="mobile_verify_send_code_cb"-->
-                      <!--@mobile_verify_submit_cb="mobile_verify_submit_cb"></mobileVerify>-->
-      <!--<cellPicker :data="list" valueKey="desc_" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
-    <!--<cellPicker :data="list1" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker>-->
-      <!--<picker :data="list" valueKey="desc_"></picker>-->
-      <!--<picker :data="list2"></picker>-->
-    <!-- <cell v-model="type" @input.native="e=>type=e.target.value" type="mobile" :verify="false"></cell> -->
- <!--    <cell  v-model="item.mobile.val" inputType="mobile" ref='abc'></cell>
-    <sendCode 
-    @input.native="e=>item.code.val=e.target.value"
-    v-model="item.code.val"
-    type = "btnText"
-    verifyCellName = "abc"
-    >
-    </sendCode> -->
-       <addPicker :defaultValueArr='defaultValueArr' :data="add" @addPicker_submit_cb="cell_picker_submit_cb"></addPicker>
-       <!-- <cell  v-model="item.mobile.val" inputType="mobile"  ref='abc'></cell> -->
-         <!-- <cellPicker  valueKey="desc_" :data="list" @cell_picker_submit_cb="cell_picker_submit_cb"></cellPicker> -->
+   
+    <fxd-add-picker :defaultValueArr='defaultValueArr' v-model="add" @addPicker_submit_cb="cell_picker_submit_cb"></fxd-add-picker>
+
   </div>
 </template>
 
 <style lang="scss">
-  @import './lib/transition.css';
-  @import './lib/reset.css';
-  @import 'lib/config';
 </style>
 
 <script>
-import actionsheet from './components/common/actionsheet/actionsheet.vue'
-import fmask from './components/common/mask/mask.vue'
-import Alert from './components/common/alert/'
-import Loading from './components/common/loading/'
-import button from './components/common/button/button.vue'
-
-import picker from './components/ui/picker/picker.vue'
-import cellPicker from './components/ui/cellPicker/cellPicker.vue'
-import addPicker from './components/ui/addPicker/addPicker.vue'
-import cell from './components/ui/cell/cell.vue'
-import radioTip from './components/ui/radioTip/radioTip.vue'
-import header from './components/ui/header/header.vue'
-
-import {bus} from './until/evenbus'
-import mobileVerify from './components/feature/mobileVerify/mobileVerify.vue'
-import sendCode from './components/feature/sendCode/sendCode.vue'
   export default {
     name: 'app',
     data() {
@@ -159,17 +107,6 @@ import sendCode from './components/feature/sendCode/sendCode.vue'
       }
     },
     components: {
-        fmask,
-        actionsheet,
-        cellPicker,
-        cell,
-        radioTip,
-        mobileVerify,
-        picker,
-        'fxd-header':header,
-        'fxd-button':button,
-        sendCode,
-        addPicker
     },
     mounted() {
       let _this = this;
