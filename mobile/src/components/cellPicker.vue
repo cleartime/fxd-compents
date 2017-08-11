@@ -18,7 +18,6 @@
                       "desc_": "资金周转",
                       "status_": "1",
                       "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a",
-                      'tip':'你快要破产了'
                   },
                       {
                           "id_": "bfcaf33c5f3d4afba355893849e54c4e",
@@ -26,7 +25,6 @@
                           "desc_": "购物",
                           "status_": "1",
                           "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a",
-                          'tip':'你是个败家的'
                       },
                       {
                           "id_": "e9380580f0fa4d308fb0e753b793415d",
@@ -34,7 +32,6 @@
                           "desc_": "旅游",
                           "status_": "1",
                           "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a",
-                          'tip':'你是个多动症患者'
                       },
                       {
                           "id_": "e59ef2ff6e3d44078be2d4ade17b7269",
@@ -42,7 +39,6 @@
                           "desc_": "医疗",
                           "status_": "1",
                           "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a",
-                          'tip':'你要快要狗带了'
                       },
                       {
                           "id_": "7b731966a9d148b18191d01f39bf81f9",
@@ -50,7 +46,6 @@
                           "desc_": "教育",
                           "status_": "1",
                           "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a",
-                          'tip':'你是个小学生'
                       },
                       {
                           "id_": "bc744d6769b34df7896e8b3249aad675",
@@ -58,7 +53,6 @@
                           "desc_": "其它",
                           "status_": "1",
                           "dic_index_id_": "a5ecbe4804354f22be6d64b2f93cc20a",
-                          'tip':'你你你'
                       }]
               },
           }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <fxd-mask v-if="visible">
-            <div @click='cancel'>别看了，这里什么都没有</div>
+            <div @click='cancel'>什么都没有</div>
         </fxd-mask>
     </div>
 </template>

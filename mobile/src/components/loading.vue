@@ -1,6 +1,6 @@
 <template>
   <div>
-    不知道怎么关闭就乖乖等3秒吧
+    等3秒
   </div>
 </template>
 <style lang="scss" scoped>

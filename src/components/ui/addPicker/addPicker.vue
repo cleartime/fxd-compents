@@ -9,11 +9,11 @@
             <transition name="picker" v-on:after-leave="afterLeave">
             <div class="picker-outline" v-if="visible" @click.stop.prevent>
                 <header class="picker-outline-header">
-                    <button @click.stop.prevent="cancel">取消</button>
+                    <button @click.stop.prevent="cancel">取消1</button>
                     <h1>{{data.placeholder}}</h1>
                     <button @click.stop.prevent="submit">确定</button>
                 </header>
-                <Picker :slots="addressSlots"  :itemHeight="72"  :visible-item-count="5" value-key="name" @change="onAddressChange"></Picker>
+                <Picker :slots="addressSlots" :visible-item-count="5" value-key="name" @change="onAddressChange"></Picker>
             </div>
             </transition>
         </Fxd-mask>
@@ -146,6 +146,7 @@
 
 <style lang="scss">
     .cellSwiper{
+        border: 1px solid red;
         font-size: .32rem;
         display: flex;
         align-items: center;

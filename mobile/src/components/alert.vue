@@ -1,8 +1,7 @@
 <template>
     <div>
-        <div @click="alert">点击试试看吧，有惊喜哦！</div>
-
-        <div @click="alert2" class="alert2">吃瓜群众</div>
+        <div @click="alert">点击下！</div>
+         <div @click="alert2">点击下吧！</div>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -17,28 +16,19 @@
 </style>
 <script type="text/ecmascript-6">
     import {Alert,Toask} from '../../../build/';
-    export default{
-        data(){
-            return{
+    export default {
+        data() {
+            return {
                 clickAlert1:false,
             }
         },
-        methods:{
-            alert(){
-                Alert('你四不四傻！');
-                this.clickAlert1 = true;
+        methods: {
+            alert() {
+                Alert('alert');
             },
-            alert2(){
-                if(this.clickAlert1){
-                    Alert({
-                        title:"你果然四傻",
-                        content:'<div>哈哈哈哈哈哈哈</div>'
-                    }).then((data)=>{
-                    })
-                    return
-                }
-                Toask('点击有惊喜哦！')
-            }
+            alert2() {
+                Alert('alert2');
+            },
         },
     }
 </script>

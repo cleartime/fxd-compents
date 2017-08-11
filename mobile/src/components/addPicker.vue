@@ -1,8 +1,7 @@
 <template>
   <div>
    
-    <fxd-add-picker :defaultValueArr='defaultValueArr' v-model="add" @addPicker_submit_cb="cell_picker_submit_cb"></fxd-add-picker>
-
+    <fxd-add-picker :defaultValueArr='defaultValueArr' v-model="addlist" @addPicker_submit_cb="cell_picker_submit_cb"></fxd-add-picker>
   </div>
 </template>
 
@@ -115,12 +114,13 @@
       //   this.add = this.addlist
       // },1000)
 
-      fetch('http://h5.test.fxds/fxd-esb/esb/getRegionList/getAllRegionByOrderList.jhtml?juid=827e946872644580886e0e409667b3ea&827e946872644580886e0e409667b3eatoken=5df89d317218460fb7bcb3bb940da46a').then(function(response) {
+      fetch('http://h5.test.fxds/fxd-esb/esb/getRegionList/getRegionByOrderH5List.jhtml?juid=827e946872644580886e0e409667b3ea&827e946872644580886e0e409667b3eatoken=f665a6aa6c7c41f3b6066b867bb1a5ac').then(function(response) {
           return response.json();
         }).then(function(data) {
-           _this.add = {
-            values:data.result,
-           };
+           // _this.add = {
+           //    values:data.result,
+           // };
+           console.log(data)
         }).catch(function(e) {
           console.log("Oops, error");
         });
