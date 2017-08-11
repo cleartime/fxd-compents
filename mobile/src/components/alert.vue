@@ -1,7 +1,7 @@
 <template>
     <div>
         <div @click="alert">点击下！</div>
-         <div @click="alert2">点击下吧！</div>
+        <div @click="alert2">点击下吧！</div>
     </div>
 </template>
 <style lang="scss" scoped>
