@@ -13,7 +13,7 @@
                     <h1>{{data.placeholder}}</h1>
                     <button @click.stop.prevent="submit">确定</button>
                 </header>
-                <Picker :slots="addressSlots" :visible-item-count="5" value-key="name" @change="onAddressChange"></Picker>
+                <Picker :slots="addressSlots" :visible-item-count="5"  :itemHeight="108" value-key="name" @change="onAddressChange"></Picker>
             </div>
             </transition>
         </Fxd-mask>

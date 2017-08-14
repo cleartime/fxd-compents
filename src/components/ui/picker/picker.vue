@@ -7,7 +7,7 @@
                 <h1>{{data.placeholder}}</h1>
                 <button @click.stop.prevent="submit">确定</button>
             </header>
-            <Picker :defaultIndex="myDefaultIndex" :slots="slots" :itemHeight="72" @change="onValuesChange" :value-key="valueKey"></Picker>
+            <Picker :defaultIndex="myDefaultIndex" :slots="slots" :itemHeight="108" @change="onValuesChange" :value-key="valueKey"></Picker>
         </div>
         </transition>
     </Fxd-mask>
