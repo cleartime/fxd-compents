@@ -162,6 +162,9 @@
             }
         },
         watch:{
+            inputType(val){
+              this.$refs.dom.setAttribute('type',val)
+            },
             error(val){
               this.myError = val;
             },
