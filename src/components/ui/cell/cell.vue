@@ -86,7 +86,7 @@
                 myVerify:typeof this.verify==='boolean'?false:true//判断要不要进行验证，默认是要的
             }
         },
-        props:{
+        props: {
           inputType: '',
           type: '',
           placeholder: '',
@@ -99,8 +99,8 @@
         mounted() {
             this.init();
         },
-        methods:{
-            init(){
+        methods: {
+            init() {
                 if(!!this.inputType&&this.myVerify){//获取规则json
 
                     this.regObj = regArr.filter(t=>{
@@ -117,17 +117,17 @@
                     this.max_length();
                 }
             },
-            blur(){
+            blur() {
                 this.myVerify&&this.verify_reg();
             },
-            max_length(){//设置最大长度默认不设置
+            max_length() {//设置最大长度默认不设置
 
                 if(!!this.myMaxlength&&this.myValue.length>this.myMaxlength){
 
                     this.myValue = this.myValue.substr(0,this.myMaxlength)
                 }
             },
-            verify_reg(){//验证正则表达式
+            verify_reg() {//验证正则表达式
                 if( !!this.myReadonly){
                   return false
                 }

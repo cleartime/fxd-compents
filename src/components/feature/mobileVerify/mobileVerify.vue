@@ -17,9 +17,9 @@
           inputType="imgCode"
           @verify_cb="verify_cb"
           v-if="type==='imgCode'"
-          @click.native="change_pic">
+          >
       <img :src="mobileVerifyItem.imgCode.icon" alt="" slot="imgText">
-      <img :src="mobileVerifyItem.imgCode.iconUrl" alt="" slot="btnText">
+      <img :src="mobileVerifyItem.imgCode.iconUrl" alt="" slot="btnText" @click="change_pic" width="100%">
     </cell>
     <cell v-model="mobileVerifyItem.code.val"
           @input.native="e=>mobileVerifyItem.code.val=e.target.value"
