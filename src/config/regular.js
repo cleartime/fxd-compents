@@ -24,13 +24,13 @@ const json = [{
     name:'手机验证码',
     maxlength:6,
     textType:'text',
-    reg:/^\S{0,6}$/
+    reg:/^\d{0,6}$/
 },{
     type:'imgCode',
     name:'图形验证码',
     maxlength:6,
     textType:'text',
-    reg:/^\d{0,6}$/
+    reg:/^\S{0,6}$/
 },{
     type:'password',
     name:'密码',
